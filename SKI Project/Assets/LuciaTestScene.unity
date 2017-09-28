@@ -157,6 +157,26 @@ Prefab:
       propertyPath: m_NormalizedViewPortRect.height
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114085699201287850, guid: ea8db01a390f3c14f8d0d3d3323a7ca7,
+        type: 2}
+      propertyPath: playerToFollow
+      value: NP
+      objectReference: {fileID: 0}
+    - target: {fileID: 114085699201287850, guid: ea8db01a390f3c14f8d0d3d3323a7ca7,
+        type: 2}
+      propertyPath: freeRoamXPositionAxis
+      value: Horizontal
+      objectReference: {fileID: 0}
+    - target: {fileID: 114085699201287850, guid: ea8db01a390f3c14f8d0d3d3323a7ca7,
+        type: 2}
+      propertyPath: freeRoamYPositionAxis
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114085699201287850, guid: ea8db01a390f3c14f8d0d3d3323a7ca7,
+        type: 2}
+      propertyPath: freeRoamZPositionAxis
+      value: Vertical
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ea8db01a390f3c14f8d0d3d3323a7ca7, type: 2}
   m_IsPrefabParent: 0
