@@ -2,16 +2,48 @@
 using System.Collections.Generic;
 using UnityStandardAssets.Cameras;
 using UnityEngine;
+using System;
 
 //Modified from the Unity "AutoCam" Camera script package
 
 public class CameraFollowTarget : PivotBasedCameraRig
 {
+
     //Code added in by Lucia
     [SerializeField]
     private string playerToFollow;
     [SerializeField]
     private float deltaY;
+    [SerializeField]
+    private string freeRoamXPositionAxis;
+    [SerializeField]
+    private string freeRoamYPositionAxis;
+    [SerializeField]
+    private string freeRoamZPositionAxis;
+    //[SerializeField]
+    //private string freeRoamRotateAxis;
+
+    enum cameraStateEnum { follow, spectate };
+
+    float freeRoamPositionXInputValue;
+    float freeRoamPositionYInputValue;
+    float freeRoamRotationInputValue;
+    float freeRoamPositionZInputValue;
+
+    cameraStateEnum cameraState
+    {
+        get
+        {
+            if (playerToFollow != null)
+            {
+                return cameraStateEnum.follow;
+            }
+            else
+            {
+                return cameraStateEnum.spectate;
+            }
+        }
+    }
 
     [SerializeField]
     private float moveSpeed = 3; // How fast the rig will move to keep up with target's position
@@ -37,12 +69,52 @@ public class CameraFollowTarget : PivotBasedCameraRig
 
     private void Awake()
     {
-        target = GameObject.Find(playerToFollow).transform;
+        if (playerToFollow == "NP")
+        {
+            playerToFollow = null;
+        }
+        else
+        {
+            target = GameObject.Find(playerToFollow).transform;
+        }
     }
 
     private void Update()
     {
-        FollowTargetPosition();
+        switch (cameraState)
+        {
+            case cameraStateEnum.follow:
+                FollowTargetPosition();
+                break;
+            case cameraStateEnum.spectate:
+                SpectateMode();
+                break;
+            default:
+                break;
+        }
+        Debug.Log(cameraState.ToString());
+    }
+
+    private void SpectateMode()
+    {
+        //Chase Cam
+        //NOTE: Get player manager object, if the length of the player array changes, run function again
+        //Free Roam
+        FreeRoamCamera();
+    }
+
+    private void FreeRoamCamera()
+    {
+        //Adjusts position 
+        freeRoamPositionXInputValue = Input.GetAxis(freeRoamXPositionAxis);
+        //freeRoamPositionYInputValue = Input.GetAxis(freeRoamYPositionAxis);
+        freeRoamPositionZInputValue = Input.GetAxis(freeRoamZPositionAxis);
+
+        //freeRoamRotationInputValue = Input.GetAxis(freeRoamRotateAxis);
+
+        transform.Translate(freeRoamPositionXInputValue, 0, freeRoamPositionZInputValue);
+
+        //LOOK AT STARFOX CLONE FROM AGES!!!
     }
 
     private void FollowTargetPosition()

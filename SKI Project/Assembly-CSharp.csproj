@@ -51,8 +51,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Corey\Corey Scripts\carroot.cs" />
+     <Compile Include="Assets\Corey\Corey Scripts\CoreysCarController.cs" />
      <Compile Include="Assets\Lucia\CameraFollowTarget.cs" />
      <Compile Include="Assets\Lucia\Standard Assets\Cameras\Scripts\AbstractTargetFollower.cs" />
+     <Compile Include="Assets\Lucia\Standard Assets\Cameras\Scripts\CameraRectResize.cs" />
      <Compile Include="Assets\Lucia\Standard Assets\Cameras\Scripts\PivotBasedCameraRig.cs" />
      <Compile Include="Assets\Lucia\Standard Assets\Cameras\Scripts\ProtectCameraFromWallClip.cs" />
      <Compile Include="Assets\Lucia\Standard Assets\Cameras\Scripts\TargetFieldOfView.cs" />
@@ -64,8 +67,13 @@
      <Compile Include="Assets\ProCore\ProGrids\Classes\pg_Enum.cs" />
      <Compile Include="Assets\ProCore\ProGrids\Classes\pg_SceneMeshRender.cs" />
      <Compile Include="Assets\ProCore\ProGrids\Classes\pg_Util.cs" />
-     <Compile Include="Assets\Scripts\Player.cs" />
-     <Compile Include="Assets\Scripts\PlayerManager.cs" />
+     <Compile Include="Assets\Scripts\CannonBall.cs" />
+     <Compile Include="Assets\Scripts\CannonController.cs" />
+     <Compile Include="Assets\Scripts\CannonTrigger.cs" />
+     <Compile Include="Assets\Scripts\Thomas_DriftingScript\CarController.cs" />
+     <Compile Include="Assets\Scripts\Thomas_DriftingScript\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Thomas_SavePlayerDataScripts\Player.cs" />
+     <Compile Include="Assets\Scripts\Thomas_SavePlayerDataScripts\PlayerManager.cs" />
      <None Include="Assets\ProCore\ProGrids\Shader\pg_GridShader.shader" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_TransparentOverlay.shader" />
      <None Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\README.txt" />
@@ -106,19 +114,19 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderCore-Unity5">
- <HintPath>C:/Users/christopher.harper/Desktop/GitHub/SKI/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
+ <HintPath>C:/workspace/LuciaHarper/IndieTeam/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderMeshOps-Unity5">
- <HintPath>C:/Users/christopher.harper/Desktop/GitHub/SKI/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
+ <HintPath>C:/workspace/LuciaHarper/IndieTeam/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="KDTree">
- <HintPath>C:/Users/christopher.harper/Desktop/GitHub/SKI/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
+ <HintPath>C:/workspace/LuciaHarper/IndieTeam/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
  </Reference>
  <Reference Include="pb_Stl">
- <HintPath>C:/Users/christopher.harper/Desktop/GitHub/SKI/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
+ <HintPath>C:/workspace/LuciaHarper/IndieTeam/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
  </Reference>
  <Reference Include="Triangle">
- <HintPath>C:/Users/christopher.harper/Desktop/GitHub/SKI/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ClassesLib/Triangle.dll</HintPath>
+ <HintPath>C:/workspace/LuciaHarper/IndieTeam/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ClassesLib/Triangle.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
