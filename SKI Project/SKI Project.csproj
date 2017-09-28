@@ -93,6 +93,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Corey\Corey Scripts\carroot.cs" />
+    <Compile Include="Assets\Corey\Corey Scripts\CoreysCarController.cs" />
     <Compile Include="Assets\Lucia\CameraFollowTarget.cs" />
     <Compile Include="Assets\Lucia\Standard Assets\Cameras\Scripts\AbstractTargetFollower.cs" />
     <Compile Include="Assets\Lucia\Standard Assets\Cameras\Scripts\CameraRectResize.cs" />
@@ -107,8 +109,10 @@
     <Compile Include="Assets\ProCore\ProGrids\Classes\pg_Enum.cs" />
     <Compile Include="Assets\ProCore\ProGrids\Classes\pg_SceneMeshRender.cs" />
     <Compile Include="Assets\ProCore\ProGrids\Classes\pg_Util.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\PlayerManager.cs" />
+    <Compile Include="Assets\Scripts\Thomas_DriftingScript\CarController.cs" />
+    <Compile Include="Assets\Scripts\Thomas_DriftingScript\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Thomas_SavePlayerDataScripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Thomas_SavePlayerDataScripts\PlayerManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\README.txt" />
