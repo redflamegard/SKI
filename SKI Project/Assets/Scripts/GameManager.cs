@@ -64,14 +64,14 @@ public class GameManager : MonoBehaviour {
     }
 
     // Update is called once per frame
- //   void Update () {
- //       foreach (Transform playerTransform in PlayersInRound)
- //       {
- //           //playerHealthSliders[playerTransform.gameObject.GetComponent<CarController>().PlayerNumber -1].value = playerTransform.gameObject.GetComponent<PlayerHealth>().CurrentHealth;
- //       }
+    void Update () {
+        foreach (Transform playerTransform in PlayersInRound)
+        {
+            playerHealthSliders[playerTransform.gameObject.GetComponent<CarController>().PlayerNumber -1].value = playerTransform.gameObject.GetComponent<PlayerHealth>().CurrentHealth;
+        }
         
 
-	//}
+	}
 
     IEnumerator TimedGame() {
         yield return new WaitForSeconds(timeLimit);

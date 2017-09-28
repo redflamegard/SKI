@@ -50,10 +50,10 @@ public class CarController : MonoBehaviour {
     //RocketSimple rocketSimplePrefab;
     //[SerializeField]
     //RocketTargetted rocketTargettedPrefab;
-    //[SerializeField]
-    //GameObject basicMinigun;
-    //[SerializeField]
-    //Vector3 rocketOffset;
+    [SerializeField]
+    GameObject basicMinigun;
+    [SerializeField]
+    Vector3 rocketOffset;
     [SerializeField]
     private float deathTime = 3f;
     #endregion
@@ -71,13 +71,13 @@ public class CarController : MonoBehaviour {
     bool isTorquePowerupActive;
     float startingMass;
     GameObject activeWeapon;
-    //int childObjectCountWithoutWeapon;
+    int childObjectCountWithoutWeapon;
     bool canDrive;
     GameManager gameManager;
     #endregion
 
     #region Private properties
-    //bool hasWeapon{ get { return childObjectCountWithoutWeapon < transform.childCount ? true : false; } }
+    bool hasWeapon{ get { return childObjectCountWithoutWeapon < transform.childCount ? true : false; } }
     private float ForwardVelocity{ get { return rigidBody.transform.InverseTransformDirection(rigidBody.velocity).z; } }
     private bool IsMovingForward{ get { return ForwardVelocity > 0; } }
     //private bool IsRocketAttached { get { return GetComponentInChildren<SkinnedMeshRenderer>().enabled;}}
@@ -86,8 +86,8 @@ public class CarController : MonoBehaviour {
     public int PlayerNumber = 1;
 
     void Start() {
-        try { gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); }
-        catch (Exception) { throw new Exception("Scene must contain a GameManager"); }
+        //try { gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); }
+        //catch (Exception) { throw new Exception("Scene must contain a GameManager"); }
 
         try { rigidBody = GetComponent<Rigidbody>(); }
         catch (Exception) { throw new Exception("CarController must be attached to a GameObject with a Rigidbody component."); }
@@ -96,8 +96,8 @@ public class CarController : MonoBehaviour {
         tireSidewaysStiffnessDefault = wheelsAll[0].sidewaysFriction.stiffness;
         torqueCurveModifier = new AnimationCurve(new Keyframe(0, 1), new Keyframe(maxSpeed, 0.25f));
         startingMass = rigidBody.mass;
+        childObjectCountWithoutWeapon = transform.childCount;
         canDrive = true;
-        //childObjectCountWithoutWeapon = transform.childCount;
         //for (int i = 0; i < wheelsAll.Length; i++)
         //{
         //    wheelsAll[i].suspensionDistance = rideHeight;
@@ -121,14 +121,14 @@ public class CarController : MonoBehaviour {
         if (canDrive)
             Drive();
         AccelerationHelper();
-        //if (!hasWeapon)
+        if (!hasWeapon)
             rigidBody.mass = startingMass;
         CheckRollOver();
     }
 
     private void CheckRollOver() {
         Quaternion normalRotation = new Quaternion(0,0,0,0);
-        if (Mathf.Abs(transform.rotation.x) > (Mathf.Abs(normalRotation.x) + 135f))
+        if (transform.rotation.x > normalRotation.x + 135)
         {
             DieAndRespawnAtLocation();
         }
@@ -258,24 +258,6 @@ public class CarController : MonoBehaviour {
     {
         StartCoroutine(TorqueIncreasePowerUp());
     }
-
-
-    void Respawn()
-    {
-        StartCoroutine(DieAndRespawnAtLocation());
-    }
-
-    IEnumerator DieAndRespawnAtLocation()
-    {
-        canDrive = false;
-        yield return new WaitForSeconds(deathTime);
-
-        gameManager.PlayerDied(PlayerNumber);
-        canDrive = true;
-        gameObject.transform.position = new Vector3(0, 10, 0);
-        gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
-    }
-
     #endregion
 
     void GetInput() {
@@ -296,7 +278,7 @@ public class CarController : MonoBehaviour {
     //        switch (weapon)
     //        {
     //            case WeaponType.Rocket:
-    //                    activeWeapon = Instantiate(rocketSimplePrefab.gameObject, transform, false) as GameObject;
+    //                    activeWeapon = Instantiate(rocketSimplePrefab, transform, false) as GameObject;
     //                rigidBody.centerOfMass = new Vector3(rocketOffset.x, centerOfMassOffset.y, centerOfMassOffset.z);
     //                rigidBody.mass += 2000f;
     //                break;
@@ -307,7 +289,7 @@ public class CarController : MonoBehaviour {
     //                activeWeapon = basicMinigun;
     //                break;
     //            case WeaponType.TargettedRocket:
-    //                activeWeapon = Instantiate(rocketTargettedPrefab.gameObject, transform, false) as GameObject;
+    //                activeWeapon = Instantiate(rocketTargettedPrefab, transform, false) as GameObject;
     //                rigidBody.mass += 4000f;
     //                break;
     //            default:
@@ -317,5 +299,18 @@ public class CarController : MonoBehaviour {
     //}
     #endregion
 
+    void Respawn() {
+        StartCoroutine(DieAndRespawnAtLocation());
+    }
+
+    IEnumerator DieAndRespawnAtLocation() {
+        canDrive = false;
+        yield return new WaitForSeconds(deathTime);
+
+        gameManager.PlayerDied(PlayerNumber);
+        canDrive = true;
+        gameObject.transform.position = new Vector3(0, 10, 0);
+        gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+    }
 
 }
