@@ -109,6 +109,9 @@
     <Compile Include="Assets\ProCore\ProGrids\Classes\pg_Enum.cs" />
     <Compile Include="Assets\ProCore\ProGrids\Classes\pg_SceneMeshRender.cs" />
     <Compile Include="Assets\ProCore\ProGrids\Classes\pg_Util.cs" />
+    <Compile Include="Assets\Scripts\CannonBall.cs" />
+    <Compile Include="Assets\Scripts\CannonController.cs" />
+    <Compile Include="Assets\Scripts\CannonTrigger.cs" />
     <Compile Include="Assets\Scripts\Thomas_DriftingScript\CarController.cs" />
     <Compile Include="Assets\Scripts\Thomas_DriftingScript\GameManager.cs" />
     <Compile Include="Assets\Scripts\Thomas_SavePlayerDataScripts\Player.cs" />
