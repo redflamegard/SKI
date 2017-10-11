@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour {
     void Update () {
         foreach (Transform playerTransform in PlayersInRound)
         {
-            playerHealthSliders[playerTransform.gameObject.GetComponent<CarController>().PlayerNumber -1].value = playerTransform.gameObject.GetComponent<PlayerHealth>().CurrentHealth;
+            playerHealthSliders[playerTransform.gameObject.GetComponent<CarController>().PlayerNumber -1].value = playerTransform.gameObject.GetComponent<PlayerHealth>().CurrentDamage;
         }
         
 

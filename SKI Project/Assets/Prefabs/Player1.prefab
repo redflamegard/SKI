@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 54467978909213950}
   - component: {fileID: 114340861902782188}
   - component: {fileID: 114230247660164220}
+  - component: {fileID: 114686765670697898}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -694,7 +695,7 @@ BoxCollider:
   m_GameObject: {fileID: 1059968905801358}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.08, y: 0.045, z: 0.13}
   m_Center: {x: 0, y: 0, z: 0}
@@ -732,7 +733,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   vfxSpawnPoint: {fileID: 4273197379069838}
-  maxHealth: 100
 --- !u!114 &114340861902782188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -778,10 +778,21 @@ MonoBehaviour:
   powerUpTime: 10
   maxAccelerationHelperVelocity: 100
   accelerationHelperIncriment: 50
-  basicMinigun: {fileID: 0}
-  rocketOffset: {x: 0, y: 0, z: 0}
-  deathTime: 3
+  playerID: 0
   PlayerNumber: 1
+--- !u!114 &114686765670697898
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1999651513937344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78af71479c82a0045a2282ecf2e0e9c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionForceConstant: 500
+  explosionForceRadius: 0.5
 --- !u!146 &146250852357525062
 WheelCollider:
   m_ObjectHideFlags: 1

@@ -199,12 +199,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114340861902782188, guid: 0ef1ef0ad913ff64880c6eb08dec7949,
-        type: 2}
-      propertyPath: basicMinigun
-      value: 
-      objectReference: {fileID: 1000011974705198, guid: 835f58af2e5a1bf4fb87aa44cddb22bd,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ef1ef0ad913ff64880c6eb08dec7949, type: 2}
   m_IsPrefabParent: 0

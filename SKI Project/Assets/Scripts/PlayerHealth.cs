@@ -7,40 +7,40 @@ public class PlayerHealth : MonoBehaviour {
     enum DamageStatus {
     none, light, medium, heavy, critical };
 
-    public float CurrentHealth{get{return currentHealth;}}
+    public float CurrentDamage{get{return currentDamage;}}
 
     [SerializeField]
     GameObject[] damageIndicatorPrefabs;
     [SerializeField]
     Transform vfxSpawnPoint;
-    [SerializeField]
-    float maxHealth;
+    
 
     GameObject showDamage;
-    float currentHealth;
+    float currentDamage;
 
 	// Use this for initialization
 	void Start () {
-        currentHealth = maxHealth;
+        currentDamage = 0f;
         showDamage = new GameObject();
 	}
 
     public bool CheckIsAlive() {
-        return currentHealth > 0;
+        //return currentDamage > 0;
+        return true;
     }
 
     public void Damage(float damage) {
-        currentHealth -= damage;
-        if (currentHealth >= 75)
-            UpdateDamageStatus(DamageStatus.none);
-        else if (currentHealth < 75 && currentHealth >= 50)
-            UpdateDamageStatus(DamageStatus.light);
-        else if (currentHealth < 50 && currentHealth >= 25)
-            UpdateDamageStatus(DamageStatus.medium);
-        else if (currentHealth < 25 && currentHealth >= 1)
-            UpdateDamageStatus(DamageStatus.heavy);
-        else if (currentHealth < 1)
+        currentDamage += damage;
+        if (currentDamage >= 75)
             UpdateDamageStatus(DamageStatus.critical);
+        else if (currentDamage < 75 && currentDamage >= 50)
+            UpdateDamageStatus(DamageStatus.heavy);
+        else if (currentDamage < 50 && currentDamage >= 25)
+            UpdateDamageStatus(DamageStatus.medium);
+        else if (currentDamage < 25 && currentDamage >= 1)
+            UpdateDamageStatus(DamageStatus.light);
+        else if (currentDamage < 1)
+            UpdateDamageStatus(DamageStatus.none);
     }
 
     private void UpdateDamageStatus(DamageStatus damageStatusTemp) {
@@ -78,7 +78,7 @@ public class PlayerHealth : MonoBehaviour {
         //transform.gameObject.GetComponent<CarController>().SendMessage("Respawn");
             //moved off the CarController, will implement here
 
-        currentHealth = maxHealth;
+        currentDamage = 0f;
         UpdateDamageStatus(DamageStatus.none);
         Damage(0);
     }
