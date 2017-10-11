@@ -116,6 +116,7 @@
     <Compile Include="Assets\Scripts\CannonTrigger.cs" />
     <Compile Include="Assets\Scripts\CarController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\InputManagerStatic.cs" />
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Thomas_SavePlayerDataScripts\Player.cs" />
     <Compile Include="Assets\Scripts\Thomas_SavePlayerDataScripts\PlayerManager.cs" />

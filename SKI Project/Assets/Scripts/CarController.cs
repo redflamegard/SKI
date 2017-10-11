@@ -48,13 +48,15 @@ public class CarController : MonoBehaviour {
     [SerializeField]
     float accelerationHelperIncriment = -5f;
 
+    [SerializeField]
+    PlayerID playerID = PlayerID.one;
     
     #endregion
 
     #region Private variables
 
     float steeringInput;
-    float driveInput;
+    float gasInput;
     float brakeInput;
     Rigidbody rigidBody;
     float currentRotation;
@@ -67,6 +69,7 @@ public class CarController : MonoBehaviour {
     int childObjectCountWithoutWeapon;
     bool canDrive;
     GameManager gameManager;
+    InputManagerStatic inputManager;
     #endregion
 
     #region Private properties
@@ -76,6 +79,7 @@ public class CarController : MonoBehaviour {
     //private bool IsRocketAttached { get { return GetComponentInChildren<SkinnedMeshRenderer>().enabled;}}
     #endregion
 
+    
     public int PlayerNumber = 1;
 
     void Start() {
@@ -84,6 +88,8 @@ public class CarController : MonoBehaviour {
 
         try { rigidBody = GetComponent<Rigidbody>(); }
         catch (Exception) { throw new Exception("CarController must be attached to a GameObject with a Rigidbody component."); }
+        try { inputManager = GameObject.Find("InputManager").GetComponent<InputManagerStatic>(); }
+        catch (Exception) { throw new Exception("Scene must contain InputManager called 'InputManager'"); }
 
         rigidBody.centerOfMass = centerOfMassOffset;
         tireSidewaysStiffnessDefault = wheelsAll[0].sidewaysFriction.stiffness;
@@ -100,7 +106,13 @@ public class CarController : MonoBehaviour {
     #region UpdateFunctions
 
     void Update() {
-        GetInput();
+        //GetInput();
+        float[] inputAxis;
+        bool[] inputButtons;
+        inputManager.GetInputForPlayer(playerID, out inputButtons, out inputAxis);
+        steeringInput = inputAxis[(int)InputAxisIndex.Steering];
+        gasInput = inputAxis[(int)InputAxisIndex.Gas];
+        brakeInput = inputAxis[(int)InputAxisIndex.Brakes];
     }
 
     void FixedUpdate() {
@@ -178,9 +190,9 @@ public class CarController : MonoBehaviour {
 
         float curveMod = torqueCurveModifier.Evaluate(rigidBody.velocity.magnitude);
         if (isTorquePowerupActive)
-            currentTorque = driveInput * powerUpMaxTorque * curveMod;
+            currentTorque = gasInput * powerUpMaxTorque * curveMod;
         else
-            currentTorque = driveInput * maxMotorTorque * curveMod;
+            currentTorque = gasInput * maxMotorTorque * curveMod;
 
         
     }
@@ -254,11 +266,11 @@ public class CarController : MonoBehaviour {
     }
     #endregion
 
-    void GetInput() {
-        steeringInput = Input.GetAxis("Steering" + PlayerNumber);
-        driveInput = Input.GetAxis("Gas" + PlayerNumber);
-        brakeInput = Input.GetAxis("Brakes" + PlayerNumber);
-    }
+    //void GetInput() {
+    //    steeringInput = Input.GetAxis("Steering" + PlayerNumber);
+    //    gasInput = Input.GetAxis("Gas" + PlayerNumber);
+    //    brakeInput = Input.GetAxis("Brakes" + PlayerNumber);
+    //}
 
     private IEnumerator TorqueIncreasePowerUp()
     {

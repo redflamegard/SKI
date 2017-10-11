@@ -93,7 +93,7 @@ public class CameraFollowTarget : PivotBasedCameraRig
             default:
                 break;
         }
-        Debug.Log(cameraState.ToString());
+        //Debug.Log(cameraState.ToString());
     }
 
     private void SpectateMode()

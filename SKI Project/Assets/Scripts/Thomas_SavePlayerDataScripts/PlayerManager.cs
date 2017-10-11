@@ -26,7 +26,7 @@ public class PlayerManager : MonoBehaviour {
 }
 
 
-public enum PlayerID { one, two, three, four };
+//public enum PlayerID { one, two, three, four };
 
 public class PlayerData
 {
