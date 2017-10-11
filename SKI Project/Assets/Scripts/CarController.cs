@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using
+    UnityEngine;
 using System.Collections;
 using System;
 
@@ -46,16 +47,8 @@ public class CarController : MonoBehaviour {
     float maxAccelerationHelperVelocity;
     [SerializeField]
     float accelerationHelperIncriment = -5f;
-    //[SerializeField]
-    //RocketSimple rocketSimplePrefab;
-    //[SerializeField]
-    //RocketTargetted rocketTargettedPrefab;
-    [SerializeField]
-    GameObject basicMinigun;
-    [SerializeField]
-    Vector3 rocketOffset;
-    [SerializeField]
-    private float deathTime = 3f;
+
+    
     #endregion
 
     #region Private variables
@@ -77,7 +70,7 @@ public class CarController : MonoBehaviour {
     #endregion
 
     #region Private properties
-    bool hasWeapon{ get { return childObjectCountWithoutWeapon < transform.childCount ? true : false; } }
+    //bool hasWeapon{ get { return childObjectCountWithoutWeapon < transform.childCount ? true : false; } }
     private float ForwardVelocity{ get { return rigidBody.transform.InverseTransformDirection(rigidBody.velocity).z; } }
     private bool IsMovingForward{ get { return ForwardVelocity > 0; } }
     //private bool IsRocketAttached { get { return GetComponentInChildren<SkinnedMeshRenderer>().enabled;}}
@@ -121,16 +114,17 @@ public class CarController : MonoBehaviour {
         if (canDrive)
             Drive();
         AccelerationHelper();
-        if (!hasWeapon)
+        //if (!hasWeapon)
             rigidBody.mass = startingMass;
         CheckRollOver();
     }
 
     private void CheckRollOver() {
         Quaternion normalRotation = new Quaternion(0,0,0,0);
-        if (transform.rotation.x > normalRotation.x + 135)
+        if (Mathf.Abs(transform.rotation.x) > normalRotation.x + 135)
         {
-            DieAndRespawnAtLocation();
+            //Is Flipped Over
+            //DieAndRespawnAtLocation();
         }
     }
     #region Driving Mechanics
@@ -299,18 +293,18 @@ public class CarController : MonoBehaviour {
     //}
     #endregion
 
-    void Respawn() {
-        StartCoroutine(DieAndRespawnAtLocation());
-    }
+    //void Respawn() {
+    //    StartCoroutine(DieAndRespawnAtLocation());
+    //}
 
-    IEnumerator DieAndRespawnAtLocation() {
-        canDrive = false;
-        yield return new WaitForSeconds(deathTime);
+    //IEnumerator DieAndRespawnAtLocation() {
+    //    canDrive = false;
+    //    yield return new WaitForSeconds(deathTime);
 
-        gameManager.PlayerDied(PlayerNumber);
-        canDrive = true;
-        gameObject.transform.position = new Vector3(0, 10, 0);
-        gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
-    }
+    //    gameManager.PlayerDied(PlayerNumber);
+    //    canDrive = true;
+    //    gameObject.transform.position = new Vector3(0, 10, 0);
+    //    gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+    //}
 
 }
