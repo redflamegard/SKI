@@ -358,54 +358,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4521933565437638, guid: 609d357909ca1ca459f2b33f07b6f70b, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -31.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4521933565437638, guid: 609d357909ca1ca459f2b33f07b6f70b, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 15.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4521933565437638, guid: 609d357909ca1ca459f2b33f07b6f70b, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0.17194898
-      objectReference: {fileID: 0}
-    - target: {fileID: 4521933565437638, guid: 609d357909ca1ca459f2b33f07b6f70b, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4521933565437638, guid: 609d357909ca1ca459f2b33f07b6f70b, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4521933565437638, guid: 609d357909ca1ca459f2b33f07b6f70b, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.98510593
-      objectReference: {fileID: 0}
-    - target: {fileID: 4521933565437638, guid: 609d357909ca1ca459f2b33f07b6f70b, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 19.802
-      objectReference: {fileID: 0}
     - target: {fileID: 114092834827588232, guid: 609d357909ca1ca459f2b33f07b6f70b,
         type: 2}
       propertyPath: playerToFollow
       value: 
       objectReference: {fileID: 1687626148}
-    - target: {fileID: 114092834827588232, guid: 609d357909ca1ca459f2b33f07b6f70b,
-        type: 2}
-      propertyPath: autoTargetPlayer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114092834827588232, guid: 609d357909ca1ca459f2b33f07b6f70b,
-        type: 2}
-      propertyPath: deltaY
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114092834827588232, guid: 609d357909ca1ca459f2b33f07b6f70b,
-        type: 2}
-      propertyPath: followVelocity
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 609d357909ca1ca459f2b33f07b6f70b, type: 2}
   m_IsPrefabParent: 0
