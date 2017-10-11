@@ -26,7 +26,7 @@ public class PlayerHealth : MonoBehaviour {
 	}
 
     public bool CheckIsAlive() {
-        return currentHealth > 0 ? true : false;
+        return currentHealth > 0;
     }
 
     public void Damage(float damage) {
@@ -75,8 +75,9 @@ public class PlayerHealth : MonoBehaviour {
     }
 
     private void RespawnWithCarController() {
-        transform.gameObject.GetComponent<CarController>().SendMessage("Respawn");
-        
+        //transform.gameObject.GetComponent<CarController>().SendMessage("Respawn");
+            //moved off the CarController, will implement here
+
         currentHealth = maxHealth;
         UpdateDamageStatus(DamageStatus.none);
         Damage(0);
