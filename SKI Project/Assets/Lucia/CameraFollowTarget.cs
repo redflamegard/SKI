@@ -11,7 +11,7 @@ public class CameraFollowTarget : PivotBasedCameraRig
 
     //Code added in by Lucia
     [SerializeField]
-    private string playerToFollow;
+    private Transform playerToFollow;
     [SerializeField]
     private float deltaY;
     [SerializeField]
@@ -67,16 +67,17 @@ public class CameraFollowTarget : PivotBasedCameraRig
     private float turnSpeedVelocityChange; // The change in the turn speed velocity
     private Vector3 rollUp = Vector3.up;// The roll of the camera around the z axis ( generally this will always just be up )
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (playerToFollow == "NP")
-        {
-            playerToFollow = null;
-        }
-        else
-        {
-            target = GameObject.Find(playerToFollow).transform;
-        }
+        //if (playerToFollow == "NP")
+        //{
+        //    playerToFollow = null;
+        //}
+        //else
+        //{
+            base.Awake();
+            target = playerToFollow;
+        //}
     }
 
     private void Update()
