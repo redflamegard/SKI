@@ -18,11 +18,15 @@ public class VehicleCollisionHandler : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
         GameObject other = collision.gameObject;
-        if (Vector3.Project(rb.velocity, transform.position - collision.contacts[0].point).magnitude > 
-            Vector3.Project(other.GetComponent<Rigidbody>().velocity, other.transform.position - collision.contacts[0].point).magnitude)
+        if (other.GetComponent<Rigidbody>())
         {
-            other.GetComponent<Rigidbody>().AddExplosionForce(explosionForceConstant * (1f + other.GetComponent<PlayerHealth>().CurrentDamage), 
-                collision.contacts[0].point, explosionForceRadius);
+            if (Vector3.Project(rb.velocity, transform.position - collision.contacts[0].point).magnitude > 
+                Vector3.Project(other.GetComponent<Rigidbody>().velocity, other.transform.position - collision.contacts[0].point).magnitude)
+            {
+                other.GetComponent<Rigidbody>().AddExplosionForce(explosionForceConstant * (1f + other.GetComponent<PlayerHealth>().CurrentDamage), 
+                    collision.contacts[0].point, explosionForceRadius);
+            }
+
         }
     }
 }

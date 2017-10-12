@@ -68,7 +68,7 @@ public class CarController : MonoBehaviour {
     GameObject activeWeapon;
     int childObjectCountWithoutWeapon;
     bool canDrive;
-    GameManager gameManager;
+    //GameManager gameManager;
     InputManagerStatic inputManager;
     #endregion
 
@@ -133,10 +133,10 @@ public class CarController : MonoBehaviour {
 
     private void CheckRollOver() {
         Quaternion normalRotation = new Quaternion(0,0,0,0);
-        if (Mathf.Abs(transform.rotation.x) > normalRotation.x + 135)
+        if (Mathf.Abs(transform.rotation.x) > normalRotation.x + 90f || Mathf.Abs(transform.rotation.z) > normalRotation.z + 90f)
         {
             //Is Flipped Over
-            //DieAndRespawnAtLocation();
+            RespawnAtStartingLocation();
         }
     }
     #region Driving Mechanics
@@ -309,14 +309,14 @@ public class CarController : MonoBehaviour {
     //    StartCoroutine(DieAndRespawnAtLocation());
     //}
 
-    //IEnumerator DieAndRespawnAtLocation() {
-    //    canDrive = false;
-    //    yield return new WaitForSeconds(deathTime);
+    void RespawnAtStartingLocation() {
+        //canDrive = false;
+        //yield return new WaitForSeconds(deathTime);
 
-    //    gameManager.PlayerDied(PlayerNumber);
-    //    canDrive = true;
-    //    gameObject.transform.position = new Vector3(0, 10, 0);
-    //    gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
-    //}
+        //gameManager.PlayerDied(PlayerNumber);
+        canDrive = true;
+        gameObject.transform.position = new Vector3(0, 10, 0);
+        gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+    }
 
 }
