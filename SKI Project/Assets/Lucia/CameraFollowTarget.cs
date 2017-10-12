@@ -8,8 +8,10 @@ using System;
 
 public class CameraFollowTarget : PivotBasedCameraRig
 {
+    //set pivot transform.position to 6 for y and -1 z
+    //set camera transform.rotation to 15
 
-    //Code added in by Lucia
+    #region Lucia code
     [SerializeField]
     private Transform playerToFollow;
     [SerializeField]
@@ -23,13 +25,15 @@ public class CameraFollowTarget : PivotBasedCameraRig
     //[SerializeField]
     //private string freeRoamRotateAxis;
 
+    private PlayerData[] playersInGame;
+    
     enum cameraStateEnum { follow, spectate };
 
     float freeRoamPositionXInputValue;
     float freeRoamPositionYInputValue;
     float freeRoamRotationInputValue;
     float freeRoamPositionZInputValue;
-
+    #endregion
     cameraStateEnum cameraState
     {
         get
@@ -67,6 +71,7 @@ public class CameraFollowTarget : PivotBasedCameraRig
     private float turnSpeedVelocityChange; // The change in the turn speed velocity
     private Vector3 rollUp = Vector3.up;// The roll of the camera around the z axis ( generally this will always just be up )
 
+    #region Lucia code
     protected override void Awake()
     {
         //if (playerToFollow == "NP")
@@ -74,10 +79,17 @@ public class CameraFollowTarget : PivotBasedCameraRig
         //    playerToFollow = null;
         //}
         //else
-        //{
-            base.Awake();
-            target = playerToFollow;
-        //}
+        base.Awake();
+        target = playerToFollow;
+
+        //supposed to check for players for the spectate mode, right now it makes the game angry though
+        /*playersInGame = new PlayerData[PlayerManager.playersInScene.Length];
+        playersInGame = PlayerManager.playersInScene;
+        if (playersInGame == null)
+        {
+            Debug.Log("playersInGame is null");
+        }*/
+        
     }
 
     private void Update()
@@ -117,6 +129,7 @@ public class CameraFollowTarget : PivotBasedCameraRig
 
         //LOOK AT STARFOX CLONE FROM AGES!!!
     }
+    
 
     private void FollowTargetPosition()
     {
@@ -135,9 +148,13 @@ public class CameraFollowTarget : PivotBasedCameraRig
             transform.position = new Vector3(target.position.x, transform.position.y, target.position.z);
         }
     }
+    #endregion
 
+    #region Unity code
     protected override void FollowTarget(float deltaTime)
     {
+        //FIND LOCAL VELOCITY VECTOR, INGAME TRANSFORM DIRECTION, AND IF IT'S NEGATIVE GO BACKWARDS
+
         // if no target, or no time passed then we quit early, as there is nothing to do
         if (!(deltaTime > 0) || target == null)
         {
@@ -221,4 +238,5 @@ public class CameraFollowTarget : PivotBasedCameraRig
     {
         transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime * moveSpeed);
     }
+    #endregion
 }
