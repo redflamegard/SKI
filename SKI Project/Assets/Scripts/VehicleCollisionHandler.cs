@@ -15,7 +15,7 @@ public class VehicleCollisionHandler : MonoBehaviour {
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponentInParent<Rigidbody>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -28,8 +28,12 @@ public class VehicleCollisionHandler : MonoBehaviour {
             {
                 other.GetComponent<Rigidbody>().AddExplosionForce(explosionForceConstant * (1f + other.GetComponent<PlayerHealth>().CurrentDamage), 
                     collision.contacts[0].point, explosionForceRadius);
-                other.gameObject.GetComponent<PlayerHealth>().Damage((Vector3.Project(rb.velocity, transform.position - collision.contacts[0].point).magnitude) * other.GetComponent<PlayerHealth>().CurrentDamage *
-                impactDamageConstant);
+                if (other.GetComponent<PlayerHealth>())
+                {
+                    other.gameObject.GetComponent<PlayerHealth>().Damage((Vector3.Project(rb.velocity, transform.position - collision.contacts[0].point).magnitude) * 
+                        other.GetComponent<PlayerHealth>().CurrentDamage * impactDamageConstant);
+
+                }
             }
         }
         else if(Vector3.Project(rb.velocity, transform.position - collision.contacts[0].point).magnitude > minimumForceForDamage)
