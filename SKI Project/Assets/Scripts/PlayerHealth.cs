@@ -43,6 +43,11 @@ public class PlayerHealth : MonoBehaviour {
             UpdateDamageStatus(DamageStatus.none);
     }
 
+    internal void Damage(object p)
+    {
+        throw new NotImplementedException();
+    }
+
     private void UpdateDamageStatus(DamageStatus damageStatusTemp) {
         
 

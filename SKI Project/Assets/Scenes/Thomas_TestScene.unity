@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionForceConstant: 500
   explosionForceRadius: 0.5
+  impactDamageConstant: 5
 --- !u!4 &172223018 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4695063597957268, guid: 0ef1ef0ad913ff64880c6eb08dec7949,
