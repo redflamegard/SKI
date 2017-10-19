@@ -16,35 +16,48 @@ public class VehicleCollisionHandler : MonoBehaviour {
 
     private void Awake()
     {
-        rb = GetComponentInParent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
-
-    private void OnCollisionEnter(Collision collision)
+    
+    private void OnTriggerEnter(Collider collider)
     {
-        GameObject other = collision.gameObject;
-        if (other.GetComponent<Rigidbody>())
+        Rigidbody other_RB;
+        if (collider.GetComponent<Rigidbody>())
+            other_RB = collider.GetComponent<Rigidbody>();
+        else other_RB = null;
+        PlayerHealth other_Health;
+        if (collider.GetComponent<PlayerHealth>())
+            other_Health = collider.GetComponent<PlayerHealth>();
+        else other_Health = null;
+        
+
+        if (other_RB.gameObject != rb.gameObject && other_RB != null && collider.GetComponent<CarController>())
         {
-            if (Vector3.Project(rb.velocity, transform.position - collision.contacts[0].point).magnitude > 
-                Vector3.Project(other.GetComponent<Rigidbody>().velocity, other.transform.position - collision.contacts[0].point).magnitude)
+            if (Vector3.Project(rb.velocity, transform.position - collider.transform.position).magnitude > 
+                Vector3.Project(other_RB.velocity, collider.transform.position - transform.position).magnitude)
             {
+                float forceToAdd = (explosionForceConstant * ((other_Health.CurrentDamage > 1f ? 0f : 1f) +
+                    other_Health.CurrentDamage));
+                if (forceToAdd >= 3000000f)
+                    forceToAdd = 3000000f;
                 //Add explosive force to vehicle with lower agular velocity along collision trajectory proportionate to current damage of vehicle at a minimum of 1
-                other.GetComponent<Rigidbody>().AddExplosionForce(explosionForceConstant * ((other.GetComponent<PlayerHealth>().CurrentDamage > 1f ? 0f : 1f) + 
-                    other.GetComponent<PlayerHealth>().CurrentDamage), collision.contacts[0].point, explosionForceRadius);
-                if (other.GetComponentInParent<PlayerHealth>())
+                other_RB.AddExplosionForce(forceToAdd, transform.position, explosionForceRadius);
+                Debug.Log("Explosive force added: " + forceToAdd);
+                if (other_Health)
                 {
                     //Damage player if have health script proportionate to angular velocity along collision trajectory * impactDamageConstant
-                    other.gameObject.GetComponentInParent<PlayerHealth>().Damage((Vector3.Project(rb.velocity, transform.position - collision.contacts[0].point).magnitude) * 
-                        other.GetComponentInParent<PlayerHealth>().CurrentDamage * impactDamageConstant);
+                    other_Health.Damage(Vector3.Project(rb.velocity, transform.position - collider.transform.position).magnitude *
+                        ((other_Health.CurrentDamage > 1f ? 0f : 1f) + other_Health.CurrentDamage) * impactDamageConstant);
 
                 }
             }
-            else if(Vector3.Project(rb.velocity, transform.position - collision.contacts[0].point).magnitude > minimumForceForDamage)
+            else if(Vector3.Project(rb.velocity, transform.position - transform.position).magnitude > minimumForceForDamage)
             {
-                GetComponentInParent<PlayerHealth>().Damage((Vector3.Project(rb.velocity, transform.position - collision.contacts[0].point).magnitude) * 
-                    other.GetComponentInParent<PlayerHealth>().CurrentDamage * impactDamageConstant);
+                GetComponent<PlayerHealth>().Damage((Vector3.Project(rb.velocity, transform.position - collider.transform.position).magnitude) * 
+                    collider.GetComponent<PlayerHealth>().CurrentDamage * impactDamageConstant);
             }
         }
-        else if (other.gameObject.CompareTag("DeadZone"))
+        else if (collider.gameObject.CompareTag("DeadZone"))
         {
             GetComponent<CarController>().RespawnAtStartingLocation();
         }
