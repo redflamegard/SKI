@@ -309,7 +309,7 @@ public class CarController : MonoBehaviour {
     //    StartCoroutine(DieAndRespawnAtLocation());
     //}
 
-    void RespawnAtStartingLocation() {
+    public void RespawnAtStartingLocation() {
         //canDrive = false;
         //yield return new WaitForSeconds(deathTime);
 

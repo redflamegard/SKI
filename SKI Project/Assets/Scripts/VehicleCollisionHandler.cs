@@ -11,6 +11,7 @@ public class VehicleCollisionHandler : MonoBehaviour {
     float impactDamageConstant;
 
     Rigidbody rb;
+    [SerializeField]
     float minimumForceForDamage;
 
     private void Awake()
@@ -26,20 +27,26 @@ public class VehicleCollisionHandler : MonoBehaviour {
             if (Vector3.Project(rb.velocity, transform.position - collision.contacts[0].point).magnitude > 
                 Vector3.Project(other.GetComponent<Rigidbody>().velocity, other.transform.position - collision.contacts[0].point).magnitude)
             {
-                other.GetComponent<Rigidbody>().AddExplosionForce(explosionForceConstant * (1f + other.GetComponent<PlayerHealth>().CurrentDamage), 
-                    collision.contacts[0].point, explosionForceRadius);
-                if (other.GetComponent<PlayerHealth>())
+                //Add explosive force to vehicle with lower agular velocity along collision trajectory proportionate to current damage of vehicle at a minimum of 1
+                other.GetComponent<Rigidbody>().AddExplosionForce(explosionForceConstant * ((other.GetComponent<PlayerHealth>().CurrentDamage > 1f ? 0f : 1f) + 
+                    other.GetComponent<PlayerHealth>().CurrentDamage), collision.contacts[0].point, explosionForceRadius);
+                if (other.GetComponentInParent<PlayerHealth>())
                 {
-                    other.gameObject.GetComponent<PlayerHealth>().Damage((Vector3.Project(rb.velocity, transform.position - collision.contacts[0].point).magnitude) * 
-                        other.GetComponent<PlayerHealth>().CurrentDamage * impactDamageConstant);
+                    //Damage player if have health script proportionate to angular velocity along collision trajectory * impactDamageConstant
+                    other.gameObject.GetComponentInParent<PlayerHealth>().Damage((Vector3.Project(rb.velocity, transform.position - collision.contacts[0].point).magnitude) * 
+                        other.GetComponentInParent<PlayerHealth>().CurrentDamage * impactDamageConstant);
 
                 }
             }
+            else if(Vector3.Project(rb.velocity, transform.position - collision.contacts[0].point).magnitude > minimumForceForDamage)
+            {
+                GetComponentInParent<PlayerHealth>().Damage((Vector3.Project(rb.velocity, transform.position - collision.contacts[0].point).magnitude) * 
+                    other.GetComponentInParent<PlayerHealth>().CurrentDamage * impactDamageConstant);
+            }
         }
-        else if(Vector3.Project(rb.velocity, transform.position - collision.contacts[0].point).magnitude > minimumForceForDamage)
+        else if (other.gameObject.CompareTag("DeadZone"))
         {
-            GetComponent<PlayerHealth>().Damage((Vector3.Project(rb.velocity, transform.position - collision.contacts[0].point).magnitude) * other.GetComponent<PlayerHealth>().CurrentDamage *
-                impactDamageConstant);
+            GetComponent<CarController>().RespawnAtStartingLocation();
         }
     }
 }
