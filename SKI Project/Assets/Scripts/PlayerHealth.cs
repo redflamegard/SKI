@@ -87,8 +87,15 @@ public class PlayerHealth : MonoBehaviour {
     private void RespawnWithCarController() {
         //transform.gameObject.GetComponent<CarController>().SendMessage("Respawn");
         //moved off the CarController, will implement here
-        currentDamage = 0f;
-        GetComponent<CarController>().RespawnAtStartingLocation();
+        if (livesRemaining > 0)
+        {
+            currentDamage = 0f;
+            GetComponent<CarController>().RespawnAtStartingLocation();
+        }
+        else
+        {
+            //No more lives, tell game manager player isDead
+        }
         //UpdateDamageStatus(DamageStatus.none);
         //Damage(0);
     }
