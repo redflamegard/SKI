@@ -123,6 +123,8 @@
     <Compile Include="Assets\Scripts\Thomas_SavePlayerDataScripts\Player.cs" />
     <Compile Include="Assets\Scripts\Thomas_SavePlayerDataScripts\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\VehicleCollisionHandler.cs" />
+    <Compile Include="Assets\Shaders\Billboard\billboard.cs" />
+    <Compile Include="Assets\Shaders\imageEffects\cPrecision.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\README.txt" />
@@ -143,6 +145,19 @@
     <None Include="Assets\ProCore\ProGrids\About\pc_AboutEntry_ProGrids.txt" />
     <None Include="Assets\ProCore\ProGrids\Shader\pg_GridShader.shader" />
     <None Include="Assets\ProCoreBundle\_README.txt" />
+    <None Include="Assets\Shaders\Reflective\psx-unlit-add.shader" />
+    <None Include="Assets\Shaders\Reflective\psx-unlit-mult.shader" />
+    <None Include="Assets\Shaders\Reflective\psx-unlit_noambient-add.shader" />
+    <None Include="Assets\Shaders\Reflective\psx-unlit_noambient-mult.shader" />
+    <None Include="Assets\Shaders\Reflective\psx-vertexlit-add.shader" />
+    <None Include="Assets\Shaders\Reflective\psx-vertexlit-mult.shader" />
+    <None Include="Assets\Shaders\Resources\cPrecision.shader" />
+    <None Include="Assets\Shaders\Trasparent\psx-trasparent-unlit-noambient.shader" />
+    <None Include="Assets\Shaders\Trasparent\psx-trasparent-unlit.shader" />
+    <None Include="Assets\Shaders\Trasparent\psx-trasparent-vertexlit.shader" />
+    <None Include="Assets\Shaders\psx-unlit.shader" />
+    <None Include="Assets\Shaders\psx-unlit_noambient.shader" />
+    <None Include="Assets\Shaders\psx-vertexlit.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
