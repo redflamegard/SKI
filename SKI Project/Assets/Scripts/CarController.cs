@@ -47,7 +47,10 @@ public class CarController : MonoBehaviour {
     float maxAccelerationHelperVelocity;
     [SerializeField]
     float accelerationHelperIncriment = -5f;
-
+    [SerializeField]
+    float groundCheckDistance = 2f;
+    [SerializeField]
+    float timeToRespawnAfterLosingGround = 3f;
     [SerializeField]
     PlayerID playerID = PlayerID.one;
     
@@ -70,12 +73,16 @@ public class CarController : MonoBehaviour {
     bool canDrive;
     //GameManager gameManager;
     InputManagerStatic inputManager;
+    bool hasBeenOffGround = false;
+    float timeSinceSeenGround;
+
     #endregion
 
     #region Private properties
     //bool hasWeapon{ get { return childObjectCountWithoutWeapon < transform.childCount ? true : false; } }
     private float ForwardVelocity{ get { return rigidBody.transform.InverseTransformDirection(rigidBody.velocity).z; } }
     private bool IsMovingForward{ get { return ForwardVelocity > 0; } }
+    private bool IsOnGround { get { return Physics.Raycast(transform.position, transform.up * -1, groundCheckDistance); } }
     //private bool IsRocketAttached { get { return GetComponentInChildren<SkinnedMeshRenderer>().enabled;}}
     #endregion
 
@@ -132,11 +139,34 @@ public class CarController : MonoBehaviour {
     }
 
     private void CheckRollOver() {
-        Quaternion normalRotation = new Quaternion(0,0,0,0);
-        if (Mathf.Abs(transform.rotation.x) > normalRotation.x + 90f || Mathf.Abs(transform.rotation.z) > normalRotation.z + 90f)
+        //Quaternion normalRotation = new Quaternion(0,0,0,0);
+        //if (Mathf.Abs(transform.rotation.x) > normalRotation.x + 90f || Mathf.Abs(transform.rotation.z) > normalRotation.z + 90f)
+        //{
+        //    //Is Flipped Over
+        //    RespawnAtStartingLocation();
+        //}
+        if (!IsOnGround)
         {
-            //Is Flipped Over
-            RespawnAtStartingLocation();
+            if (!hasBeenOffGround)
+            {
+                hasBeenOffGround = true;
+                timeSinceSeenGround += Time.deltaTime;
+            }
+            else
+            {
+                timeSinceSeenGround += Time.deltaTime;
+                if (timeSinceSeenGround >= timeToRespawnAfterLosingGround)
+                {
+                    timeSinceSeenGround = 0f;
+                    hasBeenOffGround = false;
+                    RespawnAtStartingLocation();
+                }
+            }
+        }
+        else
+        {
+            hasBeenOffGround = true;
+            timeSinceSeenGround = 0f;
         }
     }
     #region Driving Mechanics
