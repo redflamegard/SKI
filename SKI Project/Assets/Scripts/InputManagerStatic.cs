@@ -7,17 +7,46 @@ public enum PlayerID { one, two, three, four };
 //reference array of input axiis using enum
 public enum InputAxisIndex { Steering, Gas, Brakes };
 //reference array of input buttons using enum
-public enum InputButtonIndex { Jump, Shoot, NextCam, PrevCam };
+public enum InputButtonIndex { Jump, Action, NextCam, PrevCam };
 
 public class InputManagerStatic : MonoBehaviour {
     [SerializeField]
     string[] inputAxisNames;
     [SerializeField]
     string[] inputButtonNames;
+
+    private void Start()
+    {
+        SetInputAxisNames();
+
+    }
+
+    private void SetInputAxisNames()
+    {
+        inputAxisNames = new string[3];
+        foreach (string n in Input.GetJoystickNames())
+        {
+            if (n == "Controller (Xbox One For Windows)")
+            {
+                for (int i = 0; i < inputAxisNames.Length; i++)
+                {
+                    inputAxisNames[i] = "XBOX_ONE_";
+                }
+            }
+            else if (n == "Controller (Xbox 360 For Windows)")
+            {
+                for (int i = 0; i < inputAxisNames.Length; i++)
+                {
+                    inputAxisNames[i] = "XBOX_360_";
+                }
+            }
+        }
+        inputAxisNames[0] += "Steering";
+        inputAxisNames[1] += "Gas";
+        inputAxisNames[2] += "Brakes";
+    }
+
     
-
-
-    //Input in the input manager needs to be assembled as action + (player number - 1) "Gas0" is player 1 gas pedal
 
     public void GetInputForPlayer(PlayerID _playerID, out bool[] _inputButtons, out float[] _inputAxis)
     {
