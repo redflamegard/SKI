@@ -4,6 +4,9 @@ using System.Collections;
 using System;
 
 public class CarController : MonoBehaviour {
+   
+    public PlayerID _PlayerID { get { return playerID; } }
+
     #region SerializedFields
     //[SerializeField]
     //ObserverEventHandler observerEventHandler;
@@ -69,7 +72,6 @@ public class CarController : MonoBehaviour {
     bool isTorquePowerupActive;
     float startingMass;
     GameObject activeWeapon;
-    int childObjectCountWithoutWeapon;
     bool canDrive;
     //GameManager gameManager;
     InputManagerStatic inputManager;
@@ -87,7 +89,6 @@ public class CarController : MonoBehaviour {
     #endregion
 
     
-    public int PlayerNumber = 1;
 
     void Start() {
         //try { gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); }
@@ -102,7 +103,6 @@ public class CarController : MonoBehaviour {
         tireSidewaysStiffnessDefault = wheelsAll[0].sidewaysFriction.stiffness;
         torqueCurveModifier = new AnimationCurve(new Keyframe(0, 1), new Keyframe(maxSpeed, 0.25f));
         startingMass = rigidBody.mass;
-        childObjectCountWithoutWeapon = transform.childCount;
         canDrive = true;
         //for (int i = 0; i < wheelsAll.Length; i++)
         //{
@@ -302,48 +302,19 @@ public class CarController : MonoBehaviour {
     //    brakeInput = Input.GetAxis("Brakes" + PlayerNumber);
     //}
 
+    #endregion
+
+
     private IEnumerator TorqueIncreasePowerUp()
     {
         isTorquePowerupActive = true;
         yield return new WaitForSeconds(powerUpTime);
         isTorquePowerupActive = false;
     }
-
-    //public void AddWeapon(WeaponType weapon) {
-    //    if (!hasWeapon)
-    //        switch (weapon)
-    //        {
-    //            case WeaponType.Rocket:
-    //                    activeWeapon = Instantiate(rocketSimplePrefab, transform, false) as GameObject;
-    //                rigidBody.centerOfMass = new Vector3(rocketOffset.x, centerOfMassOffset.y, centerOfMassOffset.z);
-    //                rigidBody.mass += 2000f;
-    //                break;
-    //            case WeaponType.Laser:
-    //                activeWeapon = basicMinigun;
-    //                break;
-    //            case WeaponType.Minigun:
-    //                activeWeapon = basicMinigun;
-    //                break;
-    //            case WeaponType.TargettedRocket:
-    //                activeWeapon = Instantiate(rocketTargettedPrefab, transform, false) as GameObject;
-    //                rigidBody.mass += 4000f;
-    //                break;
-    //            default:
-    //                activeWeapon = basicMinigun;
-    //                break;
-    //        }
-    //}
-    #endregion
-
-    //void Respawn() {
-    //    StartCoroutine(DieAndRespawnAtLocation());
-    //}
+    
 
     public void RespawnAtStartingLocation() {
-        //canDrive = false;
-        //yield return new WaitForSeconds(deathTime);
-
-        //gameManager.PlayerDied(PlayerNumber);
+        PlayerManager.PlayerDied(playerID);
         canDrive = true;
         gameObject.transform.position = new Vector3(0, 10, 0);
         gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);

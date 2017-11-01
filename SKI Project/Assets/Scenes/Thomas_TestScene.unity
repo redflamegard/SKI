@@ -275,6 +275,11 @@ Prefab:
       propertyPath: groundCheckDistance
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114340861902782188, guid: 0ef1ef0ad913ff64880c6eb08dec7949,
+        type: 2}
+      propertyPath: powerUpMaxTorque
+      value: 3500
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114342189240571156, guid: 0ef1ef0ad913ff64880c6eb08dec7949, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0ef1ef0ad913ff64880c6eb08dec7949, type: 2}

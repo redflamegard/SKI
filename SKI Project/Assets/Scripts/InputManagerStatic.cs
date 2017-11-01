@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //reference an array of players using enum
-public enum PlayerID { one, two, three, four };
+public enum PlayerID { one, two, three, four, AI };
 //reference array of input axiis using enum
 public enum InputAxisIndex { Steering, Gas, Brakes };
 //reference array of input buttons using enum
@@ -52,14 +52,17 @@ public class InputManagerStatic : MonoBehaviour {
     {
         float[] inputAxis = new float[inputAxisNames.Length];
         bool[] inputButtons = new bool[inputButtonNames.Length];
-        for (int i = 0; i < inputAxisNames.Length; i++)
+        if (_playerID != PlayerID.AI)
         {
-            inputAxis[i] = Input.GetAxis(inputAxisNames[i] + (int)_playerID);
-        }
-        for (int i = 0; i < inputButtonNames.Length; i++)
-        {
-            //buttons haven't been assigned yet, just placeholder for now
-            //inputButtons[i] = Input.GetButtonDown(inputButtonNames[i] + (int)_playerID);
+            for (int i = 0; i < inputAxisNames.Length; i++)
+            {
+                inputAxis[i] = Input.GetAxis(inputAxisNames[i] + (int)_playerID);
+            }
+            for (int i = 0; i < inputButtonNames.Length; i++)
+            {
+                //buttons haven't been assigned yet, just placeholder for now
+                //inputButtons[i] = Input.GetButtonDown(inputButtonNames[i] + (int)_playerID);
+            }
         }
         _inputButtons = inputButtons;
         _inputAxis = inputAxis;
