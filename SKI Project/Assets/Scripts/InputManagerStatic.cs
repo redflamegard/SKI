@@ -33,7 +33,7 @@ public class InputManagerStatic : MonoBehaviour {
                     inputAxisNames[i] = "XBOX_ONE_";
                 }
             }
-            else if (n == "Controller (Xbox 360 For Windows)")
+            else if (n == "Controller (Xbox 360 For Windows)" || n == "Controller (Rock Candy Gamepad for Xbox 360)")
             {
                 for (int i = 0; i < inputAxisNames.Length; i++)
                 {
