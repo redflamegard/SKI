@@ -36,6 +36,7 @@ public class PlayerHealth : MonoBehaviour {
 
     public void Damage(float damage) {
         currentDamage += damage;
+        Debug.Log("Player: " + GetComponent<CarController>()._PlayerID + "Current Damage: " + currentDamage);
         //if (currentDamage >= 75)
         //    UpdateDamageStatus(DamageStatus.critical);
         //else if (currentDamage < 75 && currentDamage >= 50)

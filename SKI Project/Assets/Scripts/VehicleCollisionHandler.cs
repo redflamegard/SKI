@@ -69,7 +69,8 @@ public class VehicleCollisionHandler : MonoBehaviour {
                     if (forceToAdd >= 3000000f)
                         forceToAdd = 3000000f;
                     //Add explosive force to vehicle with lower agular velocity along collision trajectory proportionate to current damage of vehicle at a minimum of 1
-                    other_RB.AddExplosionForce(forceToAdd, contactPoints[0].point, explosionForceRadius);
+                    
+                    other_RB.AddExplosionForce(forceToAdd, contactPoints[0].point, explosionForceRadius, .5f, ForceMode.Impulse);
                     Debug.Log("Explosive force added: " + forceToAdd + "Impulse magnitude: " + collision.impulse.magnitude);
 
                     if (other_Health != null)
