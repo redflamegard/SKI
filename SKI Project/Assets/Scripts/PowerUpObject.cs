@@ -2,32 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PowerUpState
-{
-    CannonBall,
-    HealthUp
-}
 
 public class PowerUpObject : MonoBehaviour {
 
-    public PowerUpState powerUpGet;
+    [SerializeField]
+    private PowerUpType powerUpGet;
 
-    public PowerUpObject(PowerUpState powerUpFromBox)
+    PlayerID playerIDThatHit;
+    
+    private void OnTriggerEnter(Collider other)
     {
-        powerUpGet = powerUpFromBox;
+        if (other.gameObject.GetComponent<CarController>())
+        {
+            playerIDThatHit = other.gameObject.GetComponent<CarController>()._PlayerID;
+
+            switch (powerUpGet)
+            {
+                case PowerUpType.TorqueIncrease:
+                    PlayerManager.GrabPowerUp += GrabTorquePowerUp;
+                    break;
+                case PowerUpType.Cannon:
+                    PlayerManager.GrabPowerUp += GrabCannonPowerUp;
+                    break;
+                case PowerUpType.GrapplingHook:
+                    PlayerManager.GrabPowerUp += GrabGrapplingHook;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    
+    private void GrabTorquePowerUp()
+    {
+        PlayerManager.AddTorquePowerUp(playerIDThatHit);
     }
 
-	// Use this for initialization
-	void Start ()
+    private void GrabCannonPowerUp()
     {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
+        PlayerManager.AddCannonPowerUp(playerIDThatHit);
+    }
 
-    
+    private void GrabGrapplingHook()
+    {
+
+    }
+
 }

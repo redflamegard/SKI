@@ -4,6 +4,9 @@ using System.Collections;
 using System;
 
 public class CarController : MonoBehaviour {
+   
+    public PlayerID _PlayerID { get { return playerID; } }
+
     #region SerializedFields
     //[SerializeField]
     //ObserverEventHandler observerEventHandler;
@@ -53,6 +56,8 @@ public class CarController : MonoBehaviour {
     float timeToRespawnAfterLosingGround = 3f;
     [SerializeField]
     PlayerID playerID = PlayerID.one;
+    [SerializeField]
+    float secondsToWaitForRespawn = 2f;
     
     #endregion
 
@@ -69,7 +74,6 @@ public class CarController : MonoBehaviour {
     bool isTorquePowerupActive;
     float startingMass;
     GameObject activeWeapon;
-    int childObjectCountWithoutWeapon;
     bool canDrive;
     //GameManager gameManager;
     InputManagerStatic inputManager;
@@ -87,7 +91,6 @@ public class CarController : MonoBehaviour {
     #endregion
 
     
-    public int PlayerNumber = 1;
 
     void Start() {
         //try { gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); }
@@ -102,7 +105,6 @@ public class CarController : MonoBehaviour {
         tireSidewaysStiffnessDefault = wheelsAll[0].sidewaysFriction.stiffness;
         torqueCurveModifier = new AnimationCurve(new Keyframe(0, 1), new Keyframe(maxSpeed, 0.25f));
         startingMass = rigidBody.mass;
-        childObjectCountWithoutWeapon = transform.childCount;
         canDrive = true;
         //for (int i = 0; i < wheelsAll.Length; i++)
         //{
@@ -139,12 +141,6 @@ public class CarController : MonoBehaviour {
     }
 
     private void CheckRollOver() {
-        //Quaternion normalRotation = new Quaternion(0,0,0,0);
-        //if (Mathf.Abs(transform.rotation.x) > normalRotation.x + 90f || Mathf.Abs(transform.rotation.z) > normalRotation.z + 90f)
-        //{
-        //    //Is Flipped Over
-        //    RespawnAtStartingLocation();
-        //}
         if (!IsOnGround)
         {
             if (!hasBeenOffGround)
@@ -165,7 +161,7 @@ public class CarController : MonoBehaviour {
         }
         else
         {
-            hasBeenOffGround = true;
+            hasBeenOffGround = false;
             timeSinceSeenGround = 0f;
         }
     }
@@ -302,51 +298,32 @@ public class CarController : MonoBehaviour {
     //    brakeInput = Input.GetAxis("Brakes" + PlayerNumber);
     //}
 
+    #endregion
+
+
     private IEnumerator TorqueIncreasePowerUp()
     {
         isTorquePowerupActive = true;
         yield return new WaitForSeconds(powerUpTime);
         isTorquePowerupActive = false;
     }
+    
 
-    //public void AddWeapon(WeaponType weapon) {
-    //    if (!hasWeapon)
-    //        switch (weapon)
-    //        {
-    //            case WeaponType.Rocket:
-    //                    activeWeapon = Instantiate(rocketSimplePrefab, transform, false) as GameObject;
-    //                rigidBody.centerOfMass = new Vector3(rocketOffset.x, centerOfMassOffset.y, centerOfMassOffset.z);
-    //                rigidBody.mass += 2000f;
-    //                break;
-    //            case WeaponType.Laser:
-    //                activeWeapon = basicMinigun;
-    //                break;
-    //            case WeaponType.Minigun:
-    //                activeWeapon = basicMinigun;
-    //                break;
-    //            case WeaponType.TargettedRocket:
-    //                activeWeapon = Instantiate(rocketTargettedPrefab, transform, false) as GameObject;
-    //                rigidBody.mass += 4000f;
-    //                break;
-    //            default:
-    //                activeWeapon = basicMinigun;
-    //                break;
-    //        }
-    //}
-    #endregion
-
-    //void Respawn() {
-    //    StartCoroutine(DieAndRespawnAtLocation());
-    //}
-
-    public void RespawnAtStartingLocation() {
-        //canDrive = false;
-        //yield return new WaitForSeconds(deathTime);
-
-        //gameManager.PlayerDied(PlayerNumber);
+    private void RespawnAtStartingLocation() {
+        PlayerManager.PlayerDied(playerID);
         canDrive = true;
-        gameObject.transform.position = new Vector3(0, 10, 0);
+        //stop the current momentum and respawn the character
+        GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<PlayerHealth>().RespawnHealth();
+        gameObject.transform.position = new Vector3(0, 3, 0);
         gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+        StartCoroutine(ReactivateRigidbodyAfterSeconds(secondsToWaitForRespawn));
     }
 
+    private IEnumerator ReactivateRigidbodyAfterSeconds(float secondsToWaitForRespawn)
+    {
+        yield return new WaitForSeconds(secondsToWaitForRespawn);
+        GetComponent<Rigidbody>().isKinematic = false;
+
+    }
 }

@@ -9,9 +9,9 @@ public class CannonTrigger : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         CannonController controller = GetComponent<CannonController>();
-        if (other.GetComponent<Player>().GetType() == typeof(Player))
+        if (other.GetComponent<CarController>().GetType() == typeof(CarController))
         {
-            other.GetComponent<Player>().enabled = false;
+            other.GetComponent<CarController>().enabled = false;
             other.transform.position = holdLocation.position;
 
             //controller.currentPlayerID = other.GetComponent<Player>().ID;
