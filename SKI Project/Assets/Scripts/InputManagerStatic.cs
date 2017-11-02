@@ -5,11 +5,12 @@ using UnityEngine;
 //reference an array of players using enum
 public enum PlayerID { one, two, three, four, AI };
 //reference array of input axiis using enum
-public enum InputAxisIndex { Steering, Gas, Brakes };
+public enum InputAxisIndex { Steering, Gas, Brakes, CameraHorizontal, CameraVertical };
 //reference array of input buttons using enum
 public enum InputButtonIndex { Jump, Action, NextCam, PrevCam };
 
-public class InputManagerStatic : MonoBehaviour {
+public class InputManagerStatic : MonoBehaviour
+{
     [SerializeField]
     string[] inputAxisNames;
     [SerializeField]
@@ -18,12 +19,11 @@ public class InputManagerStatic : MonoBehaviour {
     private void Start()
     {
         SetInputAxisNames();
-
     }
 
     private void SetInputAxisNames()
     {
-        inputAxisNames = new string[3];
+        inputAxisNames = new string[5];
         if (Input.GetJoystickNames() == null)
         {
             for (int i = 0; i < inputAxisNames.Length; i++)
@@ -42,7 +42,7 @@ public class InputManagerStatic : MonoBehaviour {
                         inputAxisNames[i] = "XBOX_ONE_";
                     }
                 }
-                else if (n == "Controller (Xbox 360 For Windows)" || n == "Controller (Rock Candy Gamepad for Xbox 360)")
+                else if (n == "Controller (XBOX 360 For Windows)" || n == "Controller (Rock Candy Gamepad for Xbox 360)")
                 {
                     for (int i = 0; i < inputAxisNames.Length; i++)
                     {
@@ -55,6 +55,8 @@ public class InputManagerStatic : MonoBehaviour {
         inputAxisNames[0] += "Steering";
         inputAxisNames[1] += "Gas";
         inputAxisNames[2] += "Brakes";
+        inputAxisNames[3] += "CameraHorizontal";
+        inputAxisNames[4] += "CameraVertical";
     }
 
     

@@ -26,6 +26,7 @@ public class CameraFollowTarget : PivotBasedCameraRig
     //private string freeRoamRotateAxis;
 
     private PlayerData[] playersInGame;
+    private InputManagerStatic inputManager;
     
     enum cameraStateEnum { follow, spectate };
 
@@ -33,6 +34,10 @@ public class CameraFollowTarget : PivotBasedCameraRig
     float freeRoamPositionYInputValue;
     float freeRoamRotationInputValue;
     float freeRoamPositionZInputValue;
+
+    float cameraHorizontalInput;
+    float cameraVertical;
+
     #endregion
     cameraStateEnum cameraState
     {
@@ -82,6 +87,8 @@ public class CameraFollowTarget : PivotBasedCameraRig
         base.Awake();
         target = playerToFollow;
 
+        inputManager = GameObject.Find("InputManager").GetComponent<InputManagerStatic>();
+
         //supposed to check for players for the spectate mode, right now it makes the game angry though
         /*playersInGame = new PlayerData[PlayerManager.playersInScene.Length];
         playersInGame = PlayerManager.playersInScene;
@@ -89,7 +96,7 @@ public class CameraFollowTarget : PivotBasedCameraRig
         {
             Debug.Log("playersInGame is null");
         }*/
-        
+
     }
 
     private void Update()
@@ -105,7 +112,21 @@ public class CameraFollowTarget : PivotBasedCameraRig
             default:
                 break;
         }
-        //Debug.Log(cameraState.ToString());
+
+        //borrowed from tom, check to see if it works!!!
+
+        UpdateCameraControlInput();
+
+        ////Debug.Log(cameraState.ToString());
+    }
+
+    private void UpdateCameraControlInput()
+    {
+        float[] inputAxis;
+        bool[] inputButtons;
+        inputManager.GetInputForPlayer(target.GetComponent<CarController>()._PlayerID, out inputButtons, out inputAxis);
+        cameraHorizontalInput = inputAxis[(int)InputAxisIndex.CameraHorizontal];
+        Debug.Log("Camera Horizontal Input Value: " + cameraHorizontalInput.ToString());
     }
 
     private void SpectateMode()
@@ -181,6 +202,7 @@ public class CameraFollowTarget : PivotBasedCameraRig
                 targetUp = Vector3.up;
             }
             currentTurnAmount = Mathf.SmoothDamp(currentTurnAmount, 1, ref turnSpeedVelocityChange, smoothTurnTime);
+            //adjust currentTurnAmount with mathf.smoothdamp maybe?
         }
         else
         {
@@ -197,13 +219,14 @@ public class CameraFollowTarget : PivotBasedCameraRig
                 var turnReactSpeed = (currentTurnAmount > desiredTurnAmount ? .1f : 1f);
                 if (Application.isPlaying)
                 {
-                    currentTurnAmount = Mathf.SmoothDamp(currentTurnAmount, desiredTurnAmount,
+                    //should work with desiredTurnAmount + cameralHorizontal Input, but doesn't
+                    currentTurnAmount = Mathf.SmoothDamp(currentTurnAmount, desiredTurnAmount + cameraHorizontalInput,
                                                          ref turnSpeedVelocityChange, turnReactSpeed);
                 }
                 else
                 {
                     // for editor mode, smoothdamp won't work because it uses deltaTime internally
-                    currentTurnAmount = desiredTurnAmount;
+                    currentTurnAmount = desiredTurnAmount + cameraHorizontalInput;
                 }
             }
             else
