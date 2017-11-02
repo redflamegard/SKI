@@ -361,23 +361,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114340861902782188, guid: 0ef1ef0ad913ff64880c6eb08dec7949,
-        type: 2}
-      propertyPath: playerID
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114509576098825586, guid: 0ef1ef0ad913ff64880c6eb08dec7949,
-        type: 2}
-      propertyPath: explosionForceConstant
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114509576098825586, guid: 0ef1ef0ad913ff64880c6eb08dec7949,
-        type: 2}
-      propertyPath: impactDamageConstant
-      value: 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114792223356471008, guid: 0ef1ef0ad913ff64880c6eb08dec7949, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ef1ef0ad913ff64880c6eb08dec7949, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &596583442
@@ -431,10 +415,20 @@ Prefab:
     - target: {fileID: 114509576098825586, guid: 0ef1ef0ad913ff64880c6eb08dec7949,
         type: 2}
       propertyPath: impactDamageConstant
-      value: 10
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114340861902782188, guid: 0ef1ef0ad913ff64880c6eb08dec7949,
+        type: 2}
+      propertyPath: steeringAssistance
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 114340861902782188, guid: 0ef1ef0ad913ff64880c6eb08dec7949,
+        type: 2}
+      propertyPath: playerID
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 114792223356471008, guid: 0ef1ef0ad913ff64880c6eb08dec7949, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 0ef1ef0ad913ff64880c6eb08dec7949, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &600812975
