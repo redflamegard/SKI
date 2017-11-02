@@ -29,7 +29,7 @@ public class VehicleCollisionHandler : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision Registered");
+        //Debug.Log("Collision Registered");
         Rigidbody other_RB = null;
         if (collision.gameObject.GetComponent<Rigidbody>())
             other_RB = collision.gameObject.GetComponent<Rigidbody>();
@@ -41,7 +41,7 @@ public class VehicleCollisionHandler : MonoBehaviour {
         
         if (other_RB != null)
         {
-            Debug.Log("Found other rigidbody");
+            //Debug.Log("Found other rigidbody");
             bool rigBodyCollidedSameAsMine = (other_RB.gameObject == rb.gameObject);
             ContactPoint[] contactPoints = collision.contacts;
             float myAngularVelocity = Vector3.Project(rb.velocity, transform.position - contactPoints[0].point).magnitude;
@@ -51,10 +51,10 @@ public class VehicleCollisionHandler : MonoBehaviour {
             {
                 bool hasAdvantage = false;
 
-                Debug.Log("Player: " + GetComponent<CarController>()._PlayerID + 
-                    "\nAngular Velocity: " + myAngularVelocity +
-                    "Other Player: " + collision.gameObject.GetComponent<CarController>()._PlayerID +
-                    "\nOther Angular Velocity: " + otherAngularVelocity);
+                //Debug.Log("Player: " + GetComponent<CarController>()._PlayerID + 
+                //    "\nAngular Velocity: " + myAngularVelocity +
+                //    "Other Player: " + collision.gameObject.GetComponent<CarController>()._PlayerID +
+                //    "\nOther Angular Velocity: " + otherAngularVelocity);
 
                 for (int i = 0; i < contactPoints.Length; i++)
                 {

@@ -315,7 +315,7 @@ public class CarController : MonoBehaviour {
         //stop the current momentum and respawn the character
         GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<PlayerHealth>().RespawnHealth();
-        gameObject.transform.position = new Vector3(0, 3, 0);
+        gameObject.transform.position = new Vector3((float)_PlayerID * 3f, 3f, 0f);
         gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
         StartCoroutine(ReactivateRigidbodyAfterSeconds(secondsToWaitForRespawn));
     }
