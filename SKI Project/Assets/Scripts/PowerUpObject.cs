@@ -45,7 +45,7 @@ public class PowerUpObject : MonoBehaviour {
 
     private void GrabGrapplingHook()
     {
-
+        PlayerManager.AddGrapplingHookPowerUp(playerIDThatHit);
     }
 
 }
