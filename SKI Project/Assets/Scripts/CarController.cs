@@ -56,6 +56,8 @@ public class CarController : MonoBehaviour {
     float timeToRespawnAfterLosingGround = 3f;
     [SerializeField]
     PlayerID playerID = PlayerID.one;
+    [SerializeField]
+    float secondsToWaitForRespawn = 2f;
     
     #endregion
 
@@ -139,12 +141,6 @@ public class CarController : MonoBehaviour {
     }
 
     private void CheckRollOver() {
-        //Quaternion normalRotation = new Quaternion(0,0,0,0);
-        //if (Mathf.Abs(transform.rotation.x) > normalRotation.x + 90f || Mathf.Abs(transform.rotation.z) > normalRotation.z + 90f)
-        //{
-        //    //Is Flipped Over
-        //    RespawnAtStartingLocation();
-        //}
         if (!IsOnGround)
         {
             if (!hasBeenOffGround)
@@ -165,7 +161,7 @@ public class CarController : MonoBehaviour {
         }
         else
         {
-            hasBeenOffGround = true;
+            hasBeenOffGround = false;
             timeSinceSeenGround = 0f;
         }
     }
@@ -313,11 +309,21 @@ public class CarController : MonoBehaviour {
     }
     
 
-    public void RespawnAtStartingLocation() {
+    private void RespawnAtStartingLocation() {
         PlayerManager.PlayerDied(playerID);
         canDrive = true;
-        gameObject.transform.position = new Vector3(0, 10, 0);
+        //stop the current momentum and respawn the character
+        GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<PlayerHealth>().RespawnHealth();
+        gameObject.transform.position = new Vector3(0, 3, 0);
         gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+        StartCoroutine(ReactivateRigidbodyAfterSeconds(secondsToWaitForRespawn));
     }
 
+    private IEnumerator ReactivateRigidbodyAfterSeconds(float secondsToWaitForRespawn)
+    {
+        yield return new WaitForSeconds(secondsToWaitForRespawn);
+        GetComponent<Rigidbody>().isKinematic = false;
+
+    }
 }

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
 
     public void EndGame(PlayerID winningPlayerID)
     {
-        winningPlayerText.text += winningPlayerID + 1;
-        endRoundPanel.SetActive(true);
+        //winningPlayerText.text += winningPlayerID + 1;
+        //endRoundPanel.SetActive(true);
     }
 }

@@ -81,11 +81,22 @@ public class PlayerManager : MonoBehaviour {
         }
 
     }
+
+    private void Awake()
+    {
+        CarController [] cars = GameObject.FindObjectsOfType<CarController>();
+        playersInScene = new PlayerData[cars.Length];
+        for (int i = 0; i < playersInScene.Length; i++)
+        {
+            playersInScene[i] = new PlayerData("PlayerSaveSlot_1", Color.white, CarModelType.Ninja, cars[i]._PlayerID);
+        }
+    }
 }
 
 
 //Enums for save data
 public enum PowerUpType { TorqueIncrease, Cannon, GrapplingHook };
+public enum CarModelType { Ninja, Prehistoric, Castle, Hover };
 
 public class PlayerData
 {
@@ -99,7 +110,7 @@ public class PlayerData
     PowerUpType currentPowerUp;
 
     Color carColor;
-    GameObject modelOfCar;
+    CarModelType modelOfCar;
     int roundsWon;
     int livesLeft;
 
@@ -112,7 +123,7 @@ public class PlayerData
 
     //created at start of the round AFTER track / vehicle selection completed
     //Game Manager tells player manager to instantiate new PlayerData objects, sends save profile / selection info
-    public PlayerData(string name, Color colorOfCar, GameObject carModel, PlayerID playerID)
+    public PlayerData(string name, Color colorOfCar, CarModelType carModel, PlayerID playerID)
     {
         //Pull achievement data form XML else create new XML
 

@@ -84,13 +84,13 @@ public class PlayerHealth : MonoBehaviour {
     //    showDamage.transform.localPosition = new Vector3(0, 0, 0);
     //}
 
-    private void RespawnWithCarController() {
+    public void RespawnHealth() {
         //transform.gameObject.GetComponent<CarController>().SendMessage("Respawn");
         //moved off the CarController, will implement here
+        livesRemaining--;
         if (livesRemaining > 0)
         {
             currentDamage = 0f;
-            GetComponent<CarController>().RespawnAtStartingLocation();
         }
         else
         {
