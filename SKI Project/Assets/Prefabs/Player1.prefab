@@ -760,7 +760,7 @@ MonoBehaviour:
   powerUpMaxTorque: 3250
   powerUpTime: 10
   maxAccelerationHelperVelocity: 150
-  accelerationHelperIncriment: 100
+  accelerationHelperIncriment: 150
   groundCheckDistance: 2
   timeToRespawnAfterLosingGround: 3
   playerID: 0
