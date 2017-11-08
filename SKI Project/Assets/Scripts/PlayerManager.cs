@@ -10,6 +10,30 @@ public class PlayerManager : MonoBehaviour {
 
     public static event Action GrabPowerUp;
     
+
+    public static void AddHealPowerUp(PlayerID _playerID)
+    {
+        for (int i = 0; i < vehiclesInScene.Length; i++)
+        {
+            if (_playerID == vehiclesInScene[i].GetComponent<CarController>()._PlayerID)
+            {
+                vehiclesInScene[i].GetComponent<PlayerHealth>().Damage(-1);
+            }
+        }
+    }
+    
+    public static void AddShieldPowerUp(PlayerID _playerID)
+    {
+        for (int i = 0; i < vehiclesInScene.Length; i++)
+        {
+            CarController currentVehicle = vehiclesInScene[i].GetComponent<CarController>();
+            if (_playerID == currentVehicle._PlayerID)
+            {
+                currentVehicle.GetComponent<PlayerHealth>().IsShielded = true;
+                playersInScene[i].AddPowerUp(PowerUpType.Shield);
+            }
+        }
+    }
     public static void AddTorquePowerUp(PlayerID _playerID)
     {
         for (int i = 0; i < vehiclesInScene.Length; i++)
@@ -29,7 +53,7 @@ public class PlayerManager : MonoBehaviour {
             CarController currentVehicle = vehiclesInScene[i].GetComponent<CarController>();
             if (_playerID == currentVehicle._PlayerID)
             {
-                //currentVehicle.SendMessage("InstantiateCannon");
+                vehiclesInScene[i].GetComponent<PlayerPowerUpComponent>().AddCanonPowerUp();
             }
         }
     }
@@ -56,6 +80,8 @@ public class PlayerManager : MonoBehaviour {
             if (id == playersInScene[i].PlayerID)
             {
                 playersInScene[i].IsAlive = false;
+                vehiclesInScene[i].GetComponent<CarController>().enabled = false;
+
             }
             if (playersInScene[i].IsAlive == true)
             {
@@ -95,13 +121,14 @@ public class PlayerManager : MonoBehaviour {
 
 
 //Enums for save data
-public enum PowerUpType { TorqueIncrease, Cannon, GrapplingHook };
+public enum PowerUpType { TorqueIncrease, Cannon, GrapplingHook, Shield, Heal };
 public enum CarModelType { Ninja, Prehistoric, Castle, Hover };
 
 public class PlayerData
 {
     public bool IsAlive { get { return isAlive; } set { isAlive = value; } }
     public PlayerID PlayerID{ get { return playerID; } set { playerID = value; } }
+    public CarModelType CarModel { get { return modelOfCar; } }
 
     [XmlElement]
     private PlayerID playerID;

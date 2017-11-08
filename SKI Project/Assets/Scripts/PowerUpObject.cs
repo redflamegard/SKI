@@ -27,12 +27,27 @@ public class PowerUpObject : MonoBehaviour {
                 case PowerUpType.GrapplingHook:
                     PlayerManager.GrabPowerUp += GrabGrapplingHook;
                     break;
+                case PowerUpType.Shield:
+                    PlayerManager.GrabPowerUp += AddShieldPowerUp;
+                    break;
+                case PowerUpType.Heal:
+                    PlayerManager.GrabPowerUp += AddHealPowerUp;
+                    break;
                 default:
                     break;
             }
         }
     }
     
+    private void AddHealPowerUp()
+    {
+        PlayerManager.AddHealPowerUp(playerIDThatHit);
+    }
+
+    private void AddShieldPowerUp()
+    {
+        PlayerManager.AddShieldPowerUp(playerIDThatHit);
+    }
     private void GrabTorquePowerUp()
     {
         PlayerManager.AddTorquePowerUp(playerIDThatHit);

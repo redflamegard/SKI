@@ -7,10 +7,21 @@ public class PlayerHealth : MonoBehaviour {
     enum DamageStatus {
     none, light, medium, heavy, critical };
 
+    public bool IsShielded { get { StartCoroutine(StopShieldingAfterSeconds(shieldTime)); return isShielded; } set { isShielded = value; } }
+
+    private IEnumerator StopShieldingAfterSeconds(float shieldTime)
+    {
+        yield return new WaitForSeconds(shieldTime);
+        isShielded = false;
+    }
+
     public float CurrentDamage{get{return currentDamage;}}
     [SerializeField]
     int livesStarting;
+    [SerializeField]
+    float shieldTime;
 
+    bool isShielded = false;
     int livesRemaining;
 
     //[SerializeField]
@@ -23,7 +34,7 @@ public class PlayerHealth : MonoBehaviour {
     float currentDamage;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         currentDamage = 0f;
         livesRemaining = livesStarting;
         //showDamage = new GameObject();
@@ -35,7 +46,10 @@ public class PlayerHealth : MonoBehaviour {
     }
 
     public void Damage(float damage) {
-        currentDamage += damage;
+        if(!isShielded)
+            currentDamage += damage;
+        if (damage == -1)   //Heal pickUp
+            currentDamage = 0;
         Debug.Log("Player: " + GetComponent<CarController>()._PlayerID + "Current Damage: " + currentDamage);
         //if (currentDamage >= 75)
         //    UpdateDamageStatus(DamageStatus.critical);
@@ -95,6 +109,7 @@ public class PlayerHealth : MonoBehaviour {
         }
         else
         {
+            PlayerManager.PlayerDied(GetComponent<CarController>()._PlayerID);
             //No more lives, tell game manager player isDead
         }
         //UpdateDamageStatus(DamageStatus.none);
