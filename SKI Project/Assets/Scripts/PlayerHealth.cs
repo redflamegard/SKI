@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour {
 
@@ -23,6 +24,8 @@ public class PlayerHealth : MonoBehaviour {
     bool isShielded = false;
     int livesRemaining;
 
+
+
     //[SerializeField]
     //GameObject[] damageIndicatorPrefabs;
     //[SerializeField]
@@ -32,23 +35,41 @@ public class PlayerHealth : MonoBehaviour {
     //GameObject showDamage;
     float currentDamage;
 
-	// Use this for initialization
-	void Awake () {
-        currentDamage = 0f;
-        livesRemaining = livesStarting;
+
+
+    #region UI_Stuffs
+    [SerializeField]
+    float maxHealth = 250f;
+    [SerializeField]
+    Slider healthSlider;
+    [SerializeField]
+    Text livesRemainingText;
+
+
+    #endregion
+
+    // Use this for initialization
+    void Awake () {
+
         //showDamage = new GameObject();
+        ResetUIValues();
 	}
 
-    public bool CheckIsAlive() {
-        //return currentDamage > 0;
-        return true;
+    void ResetUIValues()
+    {
+        currentDamage = 0f;
+        livesRemaining = livesStarting;
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = maxHealth;
     }
+    
 
     public void Damage(float damage) {
         if(!isShielded)
             currentDamage += damage;
         if (damage == -1)   //Heal pickUp
             currentDamage = 0;
+        healthSlider.value = maxHealth - currentDamage;
         Debug.Log("Player: " + GetComponent<CarController>()._PlayerID + "Current Damage: " + currentDamage);
         //if (currentDamage >= 75)
         //    UpdateDamageStatus(DamageStatus.critical);
@@ -115,6 +136,7 @@ public class PlayerHealth : MonoBehaviour {
         else
         {
             PlayerManager.PlayerDied(GetComponent<CarController>()._PlayerID);
+            livesRemainingText.text = "" + livesRemaining;
             //No more lives, tell game manager player isDead
         }
         //UpdateDamageStatus(DamageStatus.none);
