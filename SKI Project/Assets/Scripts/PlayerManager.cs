@@ -17,7 +17,8 @@ public class PlayerManager : MonoBehaviour {
         {
             if (_playerID == vehiclesInScene[i].GetComponent<CarController>()._PlayerID)
             {
-                vehiclesInScene[i].GetComponent<PlayerHealth>().Damage(-1);
+                vehiclesInScene[i].GetComponent<PlayerPowerUpComponent>().AddHealPowerUp();
+                playersInScene[i].AddPowerUp(PowerUpType.Heal);
             }
         }
     }
@@ -26,10 +27,9 @@ public class PlayerManager : MonoBehaviour {
     {
         for (int i = 0; i < vehiclesInScene.Length; i++)
         {
-            CarController currentVehicle = vehiclesInScene[i].GetComponent<CarController>();
-            if (_playerID == currentVehicle._PlayerID)
+            if (_playerID == vehiclesInScene[i].GetComponent<CarController>()._PlayerID)
             {
-                currentVehicle.GetComponent<PlayerHealth>().IsShielded = true;
+                vehiclesInScene[i].GetComponent<PlayerPowerUpComponent>().AddShieldPowerUp();
                 playersInScene[i].AddPowerUp(PowerUpType.Shield);
             }
         }
@@ -38,10 +38,10 @@ public class PlayerManager : MonoBehaviour {
     {
         for (int i = 0; i < vehiclesInScene.Length; i++)
         {
-            CarController currentVehicle = vehiclesInScene[i].GetComponent<CarController>();
-            if (_playerID == currentVehicle._PlayerID)
+            if (_playerID == vehiclesInScene[i].GetComponent<CarController>()._PlayerID)
             {
-                currentVehicle.SendMessage("TorqueIncreasePowerUp");
+                vehiclesInScene[i].GetComponent<PlayerPowerUpComponent>().AddTorquePowerUp();
+                playersInScene[i].AddPowerUp(PowerUpType.TorqueIncrease);
             }
         }
     }
@@ -50,25 +50,24 @@ public class PlayerManager : MonoBehaviour {
     {
         for (int i = 0; i < vehiclesInScene.Length; i++)
         {
-            CarController currentVehicle = vehiclesInScene[i].GetComponent<CarController>();
-            if (_playerID == currentVehicle._PlayerID)
+            if (_playerID == vehiclesInScene[i].GetComponent<CarController>()._PlayerID)
             {
                 vehiclesInScene[i].GetComponent<PlayerPowerUpComponent>().AddCanonPowerUp();
+                playersInScene[i].AddPowerUp(PowerUpType.Cannon);
             }
         }
     }
 
-    public static void AddGrapplingHookPowerUp(PlayerID _playerID)
-    {
-        for (int i = 0; i < vehiclesInScene.Length; i++)
-        {
-            CarController currentVehicle = vehiclesInScene[i].GetComponent<CarController>();
-            if (_playerID == currentVehicle._PlayerID)
-            {
-                //currentVehicle.SendMessage("InstantiateGrapplingHook");
-            }
-        }
-    }
+    //public static void AddGrapplingHookPowerUp(PlayerID _playerID)
+    //{
+    //    for (int i = 0; i < vehiclesInScene.Length; i++)
+    //    {
+    //        if (_playerID == vehiclesInScene[i].GetComponent<CarController>()._PlayerID)
+    //        {
+    //            //currentVehicle.SendMessage("InstantiateGrapplingHook");
+    //        }
+    //    }
+    //}
 
     public static void PlayerDied(PlayerID id)
     {

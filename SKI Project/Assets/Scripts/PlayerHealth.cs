@@ -7,8 +7,7 @@ public class PlayerHealth : MonoBehaviour {
     enum DamageStatus {
     none, light, medium, heavy, critical };
 
-    public bool IsShielded { get { StartCoroutine(StopShieldingAfterSeconds(shieldTime)); return isShielded; } set { isShielded = value; } }
-
+    
     private IEnumerator StopShieldingAfterSeconds(float shieldTime)
     {
         yield return new WaitForSeconds(shieldTime);
@@ -19,7 +18,7 @@ public class PlayerHealth : MonoBehaviour {
     [SerializeField]
     int livesStarting;
     [SerializeField]
-    float shieldTime;
+    float shieldingTime;
 
     bool isShielded = false;
     int livesRemaining;
@@ -98,6 +97,12 @@ public class PlayerHealth : MonoBehaviour {
     //    showDamage.transform.parent = vfxSpawnPoint;
     //    showDamage.transform.localPosition = new Vector3(0, 0, 0);
     //}
+
+    public void ActivateShield()
+    {
+        isShielded = true;
+        StartCoroutine(StopShieldingAfterSeconds(shieldingTime));
+    }
 
     public void RespawnHealth() {
         //transform.gameObject.GetComponent<CarController>().SendMessage("Respawn");

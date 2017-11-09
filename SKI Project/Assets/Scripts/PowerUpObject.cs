@@ -25,7 +25,8 @@ public class PowerUpObject : MonoBehaviour {
                     PlayerManager.GrabPowerUp += GrabCannonPowerUp;
                     break;
                 case PowerUpType.GrapplingHook:
-                    PlayerManager.GrabPowerUp += GrabGrapplingHook;
+                    //PlayerManager.GrabPowerUp += GrabGrapplingHook;
+                    Debug.Log("Grappling Hook not implimented yet. Error, Error.");
                     break;
                 case PowerUpType.Shield:
                     PlayerManager.GrabPowerUp += AddShieldPowerUp;
@@ -58,9 +59,9 @@ public class PowerUpObject : MonoBehaviour {
         PlayerManager.AddCannonPowerUp(playerIDThatHit);
     }
 
-    private void GrabGrapplingHook()
-    {
-        PlayerManager.AddGrapplingHookPowerUp(playerIDThatHit);
-    }
+    //private void GrabGrapplingHook()
+    //{
+    //    PlayerManager.AddGrapplingHookPowerUp(playerIDThatHit);
+    //}
 
 }
