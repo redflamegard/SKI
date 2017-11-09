@@ -234,8 +234,9 @@ GameObject:
   - component: {fileID: 4695063597957268}
   - component: {fileID: 54467978909213950}
   - component: {fileID: 114340861902782188}
-  - component: {fileID: 114622085593548768}
   - component: {fileID: 114509576098825586}
+  - component: {fileID: 114664539416433026}
+  - component: {fileID: 114748234458119604}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -397,7 +398,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1999651513937344}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.3, z: -11.5}
+  m_LocalPosition: {x: -766.1, y: 69.26, z: -792.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4387026711738538}
@@ -728,10 +729,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteeringAngle: 20
-  maxSpeed: 500
+  maxSpeed: 600
   maxMotorTorque: 3000
   brakeTorque: 30000
-  downForce: 350
+  downForce: 320
   steeringAssistance: 0.75
   centerOfMassOffset: {x: 0, y: -0.001, z: 0}
   tractionControlAdjustmentAmount: 0.45
@@ -758,9 +759,9 @@ MonoBehaviour:
   - {fileID: 1169309344941282}
   - {fileID: 1380339378169524}
   powerUpMaxTorque: 3250
-  powerUpTime: 10
-  maxAccelerationHelperVelocity: 150
-  accelerationHelperIncriment: 150
+  powerUpTime: 100
+  maxAccelerationHelperVelocity: 750
+  accelerationHelperIncriment: 600
   groundCheckDistance: 2
   timeToRespawnAfterLosingGround: 3
   playerID: 0
@@ -781,7 +782,7 @@ MonoBehaviour:
   impactDamageConstant: 15
   minimumVelocityForDamage: 10
   impulseMagnitudeReductionDivider: 1000
---- !u!114 &114622085593548768
+--- !u!114 &114664539416433026
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -789,10 +790,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999651513937344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1d529894e8037e49989505ae455b51c, type: 3}
+  m_Script: {fileID: 11500000, guid: 47775b8ad353879458533a64c1dcd79b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canonPrefab: {fileID: 0}
+--- !u!114 &114748234458119604
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1999651513937344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed520a7100fa41441a995547f795e251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   livesStarting: 5
+  shieldingTime: 5
 --- !u!146 &146250852357525062
 WheelCollider:
   m_ObjectHideFlags: 1
