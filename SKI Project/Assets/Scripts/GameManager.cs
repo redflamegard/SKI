@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour {
     {
         if (countDownCount == 3)
         {
-            yield return WaitForSeconds(1);
+            yield return new WaitForSeconds(1);
             countDownCount--;
             StartCoroutine(CountDown2());
         }
