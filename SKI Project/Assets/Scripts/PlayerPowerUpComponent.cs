@@ -19,6 +19,7 @@ public class PlayerPowerUpComponent : MonoBehaviour {
 
     private void Awake()
     {
+        UI_PowerUpImage.enabled = false;
         inputMan = GameObject.Find("InputManager").GetComponent<InputManagerStatic>();
     }
     private void Update()
