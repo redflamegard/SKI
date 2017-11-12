@@ -126,7 +126,7 @@ public class CameraFollowTarget : PivotBasedCameraRig
         bool[] inputButtons;
         inputManager.GetInputForPlayer(target.GetComponent<CarController>()._PlayerID, out inputButtons, out inputAxis);
         cameraHorizontalInput = inputAxis[(int)InputAxisIndex.CameraHorizontal];
-        Debug.Log("Camera Horizontal Input Value: " + cameraHorizontalInput.ToString());
+        //Debug.Log("Camera Horizontal Input Value: " + cameraHorizontalInput.ToString());
     }
 
     private void SpectateMode()
