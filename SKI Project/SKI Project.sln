@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKI Project", "SKI Project.csproj", "{6B4A8253-CE90-74BC-0701-1AE70EBC73E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKI Project.Editor", "SKI Project.Editor.csproj", "{96A25482-04F5-6873-13F0-469DB61C0134}"

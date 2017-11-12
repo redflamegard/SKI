@@ -77,7 +77,7 @@ public class VehicleCollisionHandler : MonoBehaviour {
                     {
                         //Damage player if have health script proportionate to angular velocity along collision trajectory * impactDamageConstant
                         other_Health.Damage((myAngularVelocity - otherAngularVelocity) *
-                            ((other_Health.CurrentDamage > 1f ? 0f : 1f) + other_Health.CurrentDamage) * impactDamageConstant);
+                            /*((other_Health.CurrentDamage > 1f ? 0f : 1f) + other_Health.CurrentDamage) **/ impactDamageConstant);
 
                     }
                 }
