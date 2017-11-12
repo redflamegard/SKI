@@ -78,8 +78,11 @@ public class PlayerManager : MonoBehaviour {
         {
             if (id == playersInScene[i].PlayerID)
             {
-                playersInScene[i].IsAlive = false;
-                vehiclesInScene[i].GetComponent<CarController>().enabled = false;
+                if (!playersInScene[i].HasLivesLeft)
+                {
+                    playersInScene[i].IsAlive = false;
+                    vehiclesInScene[i].GetComponent<CarController>().enabled = false;
+                }
 
             }
             if (playersInScene[i].IsAlive == true)
@@ -109,11 +112,16 @@ public class PlayerManager : MonoBehaviour {
 
     private void Awake()
     {
-        CarController [] cars = GameObject.FindObjectsOfType<CarController>();
+        CarController [] cars = FindObjectsOfType<CarController>();
+        vehiclesInScene = new GameObject[cars.Length];
+        for (int i = 0; i < cars.Length; i++)
+        {
+            vehiclesInScene[i] = cars[i].gameObject;
+        }
         playersInScene = new PlayerData[cars.Length];
         for (int i = 0; i < playersInScene.Length; i++)
         {
-            playersInScene[i] = new PlayerData("PlayerSaveSlot_1", Color.white, CarModelType.Ninja, cars[i]._PlayerID);
+            playersInScene[i] = new PlayerData("PlayerSaveSlot_1", Color.white, CarModelType.Ninja, cars[i]._PlayerID, vehiclesInScene[i].GetComponent<PlayerHealth>().LivesRemaining);
         }
     }
 }
@@ -128,6 +136,7 @@ public class PlayerData
     public bool IsAlive { get { return isAlive; } set { isAlive = value; } }
     public PlayerID PlayerID{ get { return playerID; } set { playerID = value; } }
     public CarModelType CarModel { get { return modelOfCar; } }
+    public bool HasLivesLeft { get { livesLeft--; return livesLeft > 0; } }
 
     [XmlElement]
     private PlayerID playerID;
@@ -149,10 +158,10 @@ public class PlayerData
 
     //created at start of the round AFTER track / vehicle selection completed
     //Game Manager tells player manager to instantiate new PlayerData objects, sends save profile / selection info
-    public PlayerData(string name, Color colorOfCar, CarModelType carModel, PlayerID playerID)
+    public PlayerData(string name, Color colorOfCar, CarModelType carModel, PlayerID playerID, int startingLives)
     {
         //Pull achievement data form XML else create new XML
-
+        livesLeft = startingLives;
         //set current selection values
         carColor = colorOfCar;
         modelOfCar = carModel;

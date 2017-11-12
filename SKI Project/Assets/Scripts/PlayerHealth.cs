@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour {
         isShielded = false;
     }
 
+    public int LivesRemaining { get { return livesRemaining; } }
     public float CurrentDamage{get{return currentDamage;}}
     [SerializeField]
     int livesStarting;

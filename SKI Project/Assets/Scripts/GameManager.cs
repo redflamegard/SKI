@@ -11,11 +11,16 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     Text countDownText;
 
-    int countDownCount = 3;
+    float countDownCount = 3f;
 
-    public void Start()
+    public void Awake()
     {
-        countDownText.text = countDownCount.ToString();
+        if(countDownText != null)
+            countDownText.text = "" + countDownCount;
+        for (int i = 0; i < PlayerManager.vehiclesInScene.Length; i++)
+        {
+            PlayerManager.vehiclesInScene[i].GetComponent<Rigidbody>().isKinematic = true;
+        }
         //StartCoroutine(CountDown());   
     }
 
@@ -25,35 +30,20 @@ public class GameManager : MonoBehaviour {
         //endRoundPanel.SetActive(true);
     }
 
-
-    public void GameStartCountDown()
+    private void Update()
     {
-        if (countDownCount == 0)
+        countDownCount -= Time.deltaTime;
+
+        countDownText.text = "" + (int)countDownCount;
+
+        if (countDownCount <= 0)
         {
-            foreach (GameObject players in PlayerManager.vehiclesInScene)
+            for (int i = 0; i < PlayerManager.vehiclesInScene.Length; i++)
             {
-                players.GetComponent<Rigidbody>().isKinematic = false;
+                PlayerManager.vehiclesInScene[i].GetComponent<Rigidbody>().isKinematic = false;
+
             }
         }
     }
-
-    public IEnumerator CountDown1()
-    {
-        if (countDownCount == 3)
-        {
-            yield return new WaitForSeconds(1);
-            countDownCount--;
-            StartCoroutine(CountDown2());
-        }
-    }
-
-    public IEnumerator CountDown2()
-    {
-        if (countDownCount == 2)
-        {
-            yield return countDownCount--;
-        }
-    }
-
-
+    
 }

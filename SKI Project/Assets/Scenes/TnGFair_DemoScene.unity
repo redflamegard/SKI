@@ -1702,6 +1702,16 @@ Prefab:
       propertyPath: UI_PowerUpImage
       value: 
       objectReference: {fileID: 1010455401}
+    - target: {fileID: 114340861902782188, guid: 0ef1ef0ad913ff64880c6eb08dec7949,
+        type: 2}
+      propertyPath: secondsToWaitForRespawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114509576098825586, guid: 0ef1ef0ad913ff64880c6eb08dec7949,
+        type: 2}
+      propertyPath: impulseMagnitudeReductionDivider
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ef1ef0ad913ff64880c6eb08dec7949, type: 2}
   m_IsPrefabParent: 0
@@ -4673,6 +4683,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 25.819458
       objectReference: {fileID: 0}
+    - target: {fileID: 64544872038796408, guid: c1a4be888d1dd844db389025f55b0214,
+        type: 2}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c1a4be888d1dd844db389025f55b0214, type: 2}
   m_IsPrefabParent: 0
@@ -6836,7 +6851,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-10000
+  m_Name: pb_Mesh-229150
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
