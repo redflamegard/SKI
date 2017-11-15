@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scripts\CarController.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\InputManagerStatic.cs" />
+     <Compile Include="Assets\Scripts\PlayerCameraScript.cs" />
      <Compile Include="Assets\Scripts\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\PlayerPowerUpComponent.cs" />
@@ -137,19 +138,19 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderCore-Unity5">
- <HintPath>C:/Users/Dylan.Boggs/Desktop/GitHub/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
+ <HintPath>C:/Users/corey.king/Desktop/GitHub/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="ProBuilderMeshOps-Unity5">
- <HintPath>C:/Users/Dylan.Boggs/Desktop/GitHub/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
+ <HintPath>C:/Users/corey.king/Desktop/GitHub/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="KDTree">
- <HintPath>C:/Users/Dylan.Boggs/Desktop/GitHub/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
+ <HintPath>C:/Users/corey.king/Desktop/GitHub/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
  </Reference>
  <Reference Include="pb_Stl">
- <HintPath>C:/Users/Dylan.Boggs/Desktop/GitHub/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
+ <HintPath>C:/Users/corey.king/Desktop/GitHub/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
  </Reference>
  <Reference Include="Triangle">
- <HintPath>C:/Users/Dylan.Boggs/Desktop/GitHub/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ClassesLib/Triangle.dll</HintPath>
+ <HintPath>C:/Users/corey.king/Desktop/GitHub/SKI/SKI Project/Assets/ProCore/ProBuilder/Classes/ClassesLib/Triangle.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
