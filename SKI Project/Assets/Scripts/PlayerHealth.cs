@@ -53,13 +53,14 @@ public class PlayerHealth : MonoBehaviour {
     void Awake () {
 
         //showDamage = new GameObject();
+        currentDamage = 0f;
+        livesRemaining = livesStarting;
         ResetUIValues();
+
 	}
 
     void ResetUIValues()
     {
-        currentDamage = 0f;
-        livesRemaining = livesStarting;
         healthSlider.maxValue = maxHealth;
         healthSlider.value = maxHealth;
     }
@@ -136,7 +137,7 @@ public class PlayerHealth : MonoBehaviour {
         }
         else
         {
-            PlayerManager.PlayerDied(GetComponent<CarController>()._PlayerID);
+            //PlayerManager.PlayerDied(GetComponent<CarController>()._PlayerID);
             livesRemainingText.text = "" + livesRemaining;
             //No more lives, tell game manager player isDead
         }

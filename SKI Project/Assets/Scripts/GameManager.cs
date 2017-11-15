@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     Text countDownText;
 
+    bool hasStartedRoundCountdown = false;
     float countDownCount = 3f;
+    float gameCountDownTime = 99f;
 
     public void Awake()
     {
@@ -26,8 +28,17 @@ public class GameManager : MonoBehaviour {
 
     public void EndGame(PlayerID winningPlayerID)
     {
-        //winningPlayerText.text += winningPlayerID + 1;
-        //endRoundPanel.SetActive(true);
+        winningPlayerText.text += winningPlayerID;
+        endRoundPanel.SetActive(true);
+    }
+
+    void EndGame(PlayerID [] winningPlayerIDList)
+    {
+        for (int i = 0; i < winningPlayerIDList.Length; i++)
+        {
+            winningPlayerText.text += winningPlayerIDList[i];
+        }
+        endRoundPanel.SetActive(true);
     }
 
     private void Update()
@@ -38,10 +49,50 @@ public class GameManager : MonoBehaviour {
 
         if (countDownCount <= 0)
         {
-            for (int i = 0; i < PlayerManager.vehiclesInScene.Length; i++)
+            if(hasStartedRoundCountdown)
             {
-                PlayerManager.vehiclesInScene[i].GetComponent<Rigidbody>().isKinematic = false;
+                PlayerID winningID = PlayerID.one;
+                List<PlayerID> winningIDList = new List<PlayerID>();
 
+                int highestLives = PlayerManager.vehiclesInScene[0].GetComponent<PlayerHealth>().LivesRemaining;
+                bool hasMatch = false;
+                for (int i = 0; i < PlayerManager.vehiclesInScene.Length; i++)
+                {
+                    PlayerHealth currentPlayerHealth = PlayerManager.vehiclesInScene[i].GetComponent<PlayerHealth>();
+                    CarController currentCarController = PlayerManager.vehiclesInScene[i].GetComponent<CarController>();
+
+                    if (currentPlayerHealth.LivesRemaining == highestLives)
+                    {
+                        hasMatch = true;
+                        winningIDList.Add(currentCarController._PlayerID);
+                    }
+                    if (currentPlayerHealth.LivesRemaining > highestLives)
+                    {
+                        winningID = currentCarController._PlayerID;
+                        winningIDList.Clear();
+                        winningIDList.Add(currentCarController._PlayerID);
+                        hasMatch = false;
+                    }
+                }
+                if (hasMatch)
+                {
+                    EndGame(winningIDList.ToArray());
+                }
+                else
+                {
+                    EndGame(winningID);
+                }
+                hasStartedRoundCountdown = false;
+                countDownCount = gameCountDownTime;
+            }
+            if (!hasStartedRoundCountdown)
+            {
+                for (int i = 0; i < PlayerManager.vehiclesInScene.Length; i++)
+                {
+                    PlayerManager.vehiclesInScene[i].GetComponent<Rigidbody>().isKinematic = false;
+                }
+                hasStartedRoundCountdown = true;
+                countDownCount = gameCountDownTime;
             }
         }
     }

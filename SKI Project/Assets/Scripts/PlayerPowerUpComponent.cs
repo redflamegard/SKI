@@ -5,12 +5,20 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerPowerUpComponent : MonoBehaviour {
-    [SerializeField]
-    GameObject canonPrefab;
+    //[SerializeField]
+    //GameObject canonPrefab;
+    //[SerializeField]
+    //Transform canonBallSpawnTransform;
     [SerializeField]
     Image[] powerUpImages;
     [SerializeField]
     Image UI_PowerUpImage;
+    [SerializeField]
+    AudioClip audioClip_CanonFire;
+    [SerializeField]
+    AudioClip audioClip_Shield;
+    [SerializeField]
+    AudioSource audioSource_Impact;
 
     GameObject canonInUse;
     InputManagerStatic inputMan;
@@ -43,13 +51,16 @@ public class PlayerPowerUpComponent : MonoBehaviour {
                 GetComponent<CarController>().SendMessage("TorqueIncreasePowerUp");
                 break;
             case PowerUpType.Cannon:
-                //FIRE!
+                audioSource_Impact.clip = audioClip_CanonFire;
+                audioSource_Impact.Play();
                 break;
             case PowerUpType.GrapplingHook:
                 Debug.Log("Grappling hook not setup yet");
                 break;
             case PowerUpType.Shield:
                 GetComponent<PlayerHealth>().ActivateShield();
+                audioSource_Impact.clip = audioClip_Shield;
+                audioSource_Impact.Play();
                 break;
             case PowerUpType.Heal:
                 GetComponent<PlayerHealth>().Damage(-1f);
@@ -74,7 +85,7 @@ public class PlayerPowerUpComponent : MonoBehaviour {
         if (!hasPowerUp)
         {
             UI_PowerUpImage.enabled = true;
-            canonInUse = Instantiate(canonPrefab, transform);
+            //canonInUse = Instantiate(canonPrefab, transform);
             currentPowerUp = PowerUpType.Cannon;
             UI_PowerUpImage.sprite = powerUpImages[(int)PowerUpType.Cannon].sprite;
         }

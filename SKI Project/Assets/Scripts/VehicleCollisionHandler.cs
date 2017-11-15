@@ -14,14 +14,22 @@ public class VehicleCollisionHandler : MonoBehaviour {
     float impactDamageConstant;
     [SerializeField]
     float minimumVelocityForDamage;
-
-    Rigidbody rb;
     [SerializeField]
     private float impulseMagnitudeReductionDivider;
+    [SerializeField]
+    AudioClip audioClip_vehicleCollision;
+    [SerializeField]
+    AudioClip audioClip_objectCollision;
+    [SerializeField]
+    AudioSource audioSource_Impact;
+
+    Rigidbody rb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource_Impact = GetComponent<AudioSource>();
+
     }
     
 
@@ -41,6 +49,7 @@ public class VehicleCollisionHandler : MonoBehaviour {
         
         if (other_RB != null)
         {
+            PlayVehicleCollisionSound();
             //Debug.Log("Found other rigidbody");
             bool rigBodyCollidedSameAsMine = (other_RB.gameObject == rb.gameObject);
             ContactPoint[] contactPoints = collision.contacts;
@@ -70,7 +79,7 @@ public class VehicleCollisionHandler : MonoBehaviour {
                         forceToAdd = 3000000f;
                     //Add explosive force to vehicle with lower agular velocity along collision trajectory proportionate to current damage of vehicle at a minimum of 1
                     
-                    other_RB.AddExplosionForce(forceToAdd, contactPoints[0].point, explosionForceRadius, .5f, ForceMode.Impulse);
+                    other_RB.AddExplosionForce(forceToAdd, contactPoints[0].point, explosionForceRadius, 1f, ForceMode.Impulse);
                     Debug.Log("Explosive force added: " + forceToAdd + "Impulse magnitude: " + collision.impulse.magnitude);
 
                     if (other_Health != null)
@@ -92,8 +101,27 @@ public class VehicleCollisionHandler : MonoBehaviour {
         }
         else if (collision.gameObject.CompareTag("DeadZone"))
         {
+            PlayerManager.PlayerDied(GetComponent<CarController>()._PlayerID);
             GetComponent<CarController>().SendMessage("RespawnAtStartingLocation");
         }
+        else if (collision.gameObject.GetComponent<MeshCollider>())
+        {
+            PlayObjectCollisionSound();
+        }
+    }
+
+    private void PlayObjectCollisionSound()
+    {
+        audioSource_Impact.clip = audioClip_objectCollision;
+        audioSource_Impact.loop = false;
+        audioSource_Impact.Play();
+    }
+
+    private void PlayVehicleCollisionSound()
+    {
+        audioSource_Impact.clip = audioClip_vehicleCollision;
+        audioSource_Impact.loop = false;
+        audioSource_Impact.Play();
     }
     
 }
