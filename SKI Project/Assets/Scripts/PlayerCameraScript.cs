@@ -132,7 +132,7 @@ public class PlayerCameraScript : MonoBehaviour
 
     private void Debugging()
     {
-        Debug.Log("Camera Horizontal Input Value: " + horizontalInput.ToString());
+        //Debug.Log("Camera Horizontal Input Value: " + horizontalInput.ToString());
         //Debug.Log("Vertical Input: " + (Input.GetAxis("Vertical") * turnRate).ToString());
     }
 }
