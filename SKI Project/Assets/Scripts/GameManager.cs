@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
     Text winningPlayerText;
     [SerializeField]
     Text countDownText;
+    [SerializeField]
+    Text roundCountDownText;
 
     bool hasStartedRoundCountdown = false;
     float countDownCount = 3f;
@@ -44,8 +46,14 @@ public class GameManager : MonoBehaviour {
     private void Update()
     {
         countDownCount -= Time.deltaTime;
-
-        countDownText.text = "" + (int)countDownCount;
+        if (countDownText.enabled == true)
+        {
+            countDownText.text = "" + ((int)countDownCount + 1);
+        }
+        else
+        {
+            roundCountDownText.text = "" + ((int)countDownCount + 1);
+        }
 
         if (countDownCount <= 0)
         {
@@ -93,6 +101,7 @@ public class GameManager : MonoBehaviour {
                 }
                 hasStartedRoundCountdown = true;
                 countDownCount = gameCountDownTime;
+                roundCountDownText.enabled = false;
             }
         }
     }

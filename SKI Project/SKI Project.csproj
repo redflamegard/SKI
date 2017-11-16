@@ -124,6 +124,7 @@
     <Compile Include="Assets\Scripts\PowerUpBox.cs" />
     <Compile Include="Assets\Scripts\PowerUpObject.cs" />
     <Compile Include="Assets\Scripts\RestartSceneOnClick.cs" />
+    <Compile Include="Assets\Scripts\SpinningUIIcon.cs" />
     <Compile Include="Assets\Scripts\VehicleCollisionHandler.cs" />
     <Compile Include="Assets\Shaders\Billboard\billboard.cs" />
     <Compile Include="Assets\Shaders\imageEffects\cPrecision.cs" />
