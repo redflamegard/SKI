@@ -58,6 +58,10 @@ public class CarController : MonoBehaviour {
     PlayerID playerID = PlayerID.one;
     [SerializeField]
     float secondsToWaitForRespawn = 2f;
+    [SerializeField]
+    AudioSource audioSource_Engine;
+    [SerializeField]
+    AudioClip audioClip_EngineRunning;
     
     #endregion
 
@@ -92,7 +96,7 @@ public class CarController : MonoBehaviour {
 
     
 
-    void Start() {
+    void Awake() {
         //try { gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); }
         //catch (Exception) { throw new Exception("Scene must contain a GameManager"); }
 
@@ -291,13 +295,7 @@ public class CarController : MonoBehaviour {
         StartCoroutine(TorqueIncreasePowerUp());
     }
     #endregion
-
-    //void GetInput() {
-    //    steeringInput = Input.GetAxis("Steering" + PlayerNumber);
-    //    gasInput = Input.GetAxis("Gas" + PlayerNumber);
-    //    brakeInput = Input.GetAxis("Brakes" + PlayerNumber);
-    //}
-
+    
     #endregion
 
 
@@ -310,11 +308,11 @@ public class CarController : MonoBehaviour {
     
 
     private void RespawnAtStartingLocation() {
-        PlayerManager.PlayerDied(playerID);
-        canDrive = true;
+        //PlayerManager.PlayerDied(playerID);
+        canDrive = false;
         //stop the current momentum and respawn the character
         GetComponent<Rigidbody>().isKinematic = true;
-        GetComponent<PlayerHealth>().RespawnHealth();
+        //GetComponent<PlayerHealth>().RespawnHealth();
         gameObject.transform.position = new Vector3((float)_PlayerID * 3f, 3f, 0f);
         gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
         StartCoroutine(ReactivateRigidbodyAfterSeconds(secondsToWaitForRespawn));
@@ -324,6 +322,6 @@ public class CarController : MonoBehaviour {
     {
         yield return new WaitForSeconds(secondsToWaitForRespawn);
         GetComponent<Rigidbody>().isKinematic = false;
-
+        canDrive = true;
     }
 }

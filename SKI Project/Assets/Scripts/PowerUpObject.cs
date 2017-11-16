@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,14 +8,23 @@ public class PowerUpObject : MonoBehaviour {
 
     [SerializeField]
     private PowerUpType powerUpGet;
+    [SerializeField]
+    float secondsToWait;
 
     PlayerID playerIDThatHit;
-    
+    AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<CarController>())
+        if (other.gameObject.GetComponentInParent<CarController>())
         {
-            playerIDThatHit = other.gameObject.GetComponent<CarController>()._PlayerID;
+            audioSource.Play();
+            playerIDThatHit = other.gameObject.GetComponentInParent<CarController>()._PlayerID;
 
             switch (powerUpGet)
             {
@@ -37,9 +47,17 @@ public class PowerUpObject : MonoBehaviour {
                 default:
                     break;
             }
+            GetComponent<MeshRenderer>().enabled = false;
+            StartCoroutine(DestroySelfAfterSeconds(secondsToWait));
         }
     }
-    
+
+    private IEnumerator DestroySelfAfterSeconds(float secondsToWait)
+    {
+        yield return new WaitForSeconds(secondsToWait);
+        Destroy(gameObject);
+    }
+
     private void AddHealPowerUp()
     {
         PlayerManager.AddHealPowerUp(playerIDThatHit);

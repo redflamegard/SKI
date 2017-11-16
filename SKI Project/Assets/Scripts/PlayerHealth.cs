@@ -18,6 +18,10 @@ public class PlayerHealth : MonoBehaviour {
     public int LivesRemaining { get { return livesRemaining; } }
     public float CurrentDamage{get{return currentDamage;}}
     [SerializeField]
+    GameObject repairCanvas;
+    [SerializeField]
+    float breakdownTime = 2f;
+    [SerializeField]
     int livesStarting;
     [SerializeField]
     float shieldingTime;
@@ -35,12 +39,12 @@ public class PlayerHealth : MonoBehaviour {
 
     //GameObject showDamage;
     float currentDamage;
+    [SerializeField]
+    float maxHealth = 250f;
 
 
 
     #region UI_Stuffs
-    [SerializeField]
-    float maxHealth = 250f;
     [SerializeField]
     Slider healthSlider;
     [SerializeField]
@@ -53,13 +57,14 @@ public class PlayerHealth : MonoBehaviour {
     void Awake () {
 
         //showDamage = new GameObject();
+        currentDamage = 0f;
+        livesRemaining = livesStarting;
         ResetUIValues();
+
 	}
 
     void ResetUIValues()
     {
-        currentDamage = 0f;
-        livesRemaining = livesStarting;
         healthSlider.maxValue = maxHealth;
         healthSlider.value = maxHealth;
     }
@@ -72,6 +77,10 @@ public class PlayerHealth : MonoBehaviour {
             currentDamage = 0;
         healthSlider.value = maxHealth - currentDamage;
         Debug.Log("Player: " + GetComponent<CarController>()._PlayerID + "Current Damage: " + currentDamage);
+        if (currentDamage >= maxHealth)
+        {
+            BreakDown();
+        }
         //if (currentDamage >= 75)
         //    UpdateDamageStatus(DamageStatus.critical);
         //else if (currentDamage < 75 && currentDamage >= 50)
@@ -84,13 +93,30 @@ public class PlayerHealth : MonoBehaviour {
         //    UpdateDamageStatus(DamageStatus.none);
     }
 
+    private void BreakDown()
+    {
+        repairCanvas.SetActive(true);
+        GetComponent<CarController>().enabled = false;
+        StartCoroutine(BreakDownForSeconds(breakdownTime));
+    }
+
+    private IEnumerator BreakDownForSeconds(float time)
+    {
+        yield return new WaitForSeconds(time);
+        GetComponent<CarController>().enabled = true;
+        repairCanvas.SetActive(false);
+    }
+
+
+
+
     //internal void Damage(object p)
     //{
-        
+
     //}
 
     //private void UpdateDamageStatus(DamageStatus damageStatusTemp) {
-        
+
 
     //    switch (damageStatusTemp)
     //    {
@@ -136,7 +162,7 @@ public class PlayerHealth : MonoBehaviour {
         }
         else
         {
-            PlayerManager.PlayerDied(GetComponent<CarController>()._PlayerID);
+            //PlayerManager.PlayerDied(GetComponent<CarController>()._PlayerID);
             livesRemainingText.text = "" + livesRemaining;
             //No more lives, tell game manager player isDead
         }

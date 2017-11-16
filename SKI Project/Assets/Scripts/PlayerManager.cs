@@ -74,14 +74,16 @@ public class PlayerManager : MonoBehaviour {
         bool onePlayerAlive = false;
         bool twoPlayersAlive = false;
         PlayerID winningID = PlayerID.one;
+
         for (int i = 0; i < playersInScene.Length; i++)
         {
             if (id == playersInScene[i].PlayerID)
             {
+                playersInScene[i].LivesLeft--;
                 if (!playersInScene[i].HasLivesLeft)
                 {
                     playersInScene[i].IsAlive = false;
-                    vehiclesInScene[i].GetComponent<CarController>().enabled = false;
+                    //vehiclesInScene[i].GetComponent<CarController>().enabled = false;
                 }
 
             }
@@ -106,6 +108,25 @@ public class PlayerManager : MonoBehaviour {
             catch { throw new Exception("Scene must contain a GameManager called GameManager"); }
             if (gameManager != null)
                 gameManager.EndGame(winningID);
+        }
+        else
+        {
+            CarController currentCarController;
+            PlayerHealth currentPlayerHealth;
+            for (int i = 0; i < playersInScene.Length; i++)
+            {
+                for (int j = 0; j < vehiclesInScene.Length; j++)
+                {
+                    currentCarController = vehiclesInScene[j].GetComponent<CarController>();
+                    currentPlayerHealth = currentCarController.gameObject.GetComponent<PlayerHealth>();
+                    if (currentCarController._PlayerID == playersInScene[i].PlayerID && 
+                        playersInScene[i].PlayerID == id)
+                    {
+                        currentCarController.SendMessage("RespawnAtStartingLocation");
+                        currentPlayerHealth.RespawnHealth();
+                    }
+                }
+            }
         }
 
     }
@@ -136,7 +157,8 @@ public class PlayerData
     public bool IsAlive { get { return isAlive; } set { isAlive = value; } }
     public PlayerID PlayerID{ get { return playerID; } set { playerID = value; } }
     public CarModelType CarModel { get { return modelOfCar; } }
-    public bool HasLivesLeft { get { livesLeft--; return livesLeft > 0; } }
+    public bool HasLivesLeft { get { return livesLeft > 0; } }
+    public int LivesLeft { get { return livesLeft; } set { livesLeft = value; } }
 
     [XmlElement]
     private PlayerID playerID;

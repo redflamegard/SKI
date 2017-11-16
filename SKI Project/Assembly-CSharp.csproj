@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scripts\CarController.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\InputManagerStatic.cs" />
+     <Compile Include="Assets\Scripts\PlayerCameraScript.cs" />
      <Compile Include="Assets\Scripts\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\PlayerManager.cs" />
      <Compile Include="Assets\Scripts\PlayerPowerUpComponent.cs" />
