@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,13 +20,33 @@ public class GameManager : MonoBehaviour {
 
     public void Awake()
     {
-        if(countDownText != null)
+        if (countDownText != null)
             countDownText.text = "" + countDownCount;
+        if (PlayerManager.vehiclesInScene == null)
+        {
+            InstantiateVehiclesInScene();
+        }
+        else
+        {
+            StartCoroutine(InstantiateVehiclesInSceneAtEndOfFrame());
+        }
+
+        hasStartedRoundCountdown = false;
+        //StartCoroutine(CountDown());   
+    }
+
+    private IEnumerator InstantiateVehiclesInSceneAtEndOfFrame()
+    {
+        yield return new WaitForEndOfFrame();
+        InstantiateVehiclesInScene();
+    }
+
+    private static void InstantiateVehiclesInScene()
+    {
         for (int i = 0; i < PlayerManager.vehiclesInScene.Length; i++)
         {
             PlayerManager.vehiclesInScene[i].GetComponent<Rigidbody>().isKinematic = true;
         }
-        //StartCoroutine(CountDown());   
     }
 
     public void EndGame(PlayerID winningPlayerID)
@@ -101,7 +122,7 @@ public class GameManager : MonoBehaviour {
                 }
                 hasStartedRoundCountdown = true;
                 countDownCount = gameCountDownTime;
-                roundCountDownText.enabled = false;
+                countDownText.enabled = false;
             }
         }
     }

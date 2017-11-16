@@ -105,6 +105,8 @@ public class PlayerHealth : MonoBehaviour {
         yield return new WaitForSeconds(time);
         GetComponent<CarController>().enabled = true;
         repairCanvas.SetActive(false);
+        ResetUIValues();
+        currentDamage = 0f;
     }
 
 

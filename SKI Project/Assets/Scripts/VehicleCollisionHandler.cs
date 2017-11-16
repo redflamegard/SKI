@@ -11,6 +11,8 @@ public class VehicleCollisionHandler : MonoBehaviour {
     [SerializeField]
     float explosionForceRadius;
     [SerializeField]
+    int maxForceToAdd = 2000000;
+    [SerializeField]
     float impactDamageConstant;
     [SerializeField]
     float minimumVelocityForDamage;
@@ -64,19 +66,16 @@ public class VehicleCollisionHandler : MonoBehaviour {
                 //    "\nAngular Velocity: " + myAngularVelocity +
                 //    "Other Player: " + collision.gameObject.GetComponent<CarController>()._PlayerID +
                 //    "\nOther Angular Velocity: " + otherAngularVelocity);
-
-                for (int i = 0; i < contactPoints.Length; i++)
-                {
+                
                 if (myAngularVelocity > otherAngularVelocity)
                         hasAdvantage = true;
-                }
 
                 if (hasAdvantage)
                 {
                     float forceToAdd = (explosionForceConstant * (collision.impulse.magnitude / impulseMagnitudeReductionDivider) * ((other_Health.CurrentDamage > 1f ? 0f : 1f) +
                         other_Health.CurrentDamage));
-                    if (forceToAdd >= 3000000f)
-                        forceToAdd = 3000000f;
+                    if (forceToAdd >= maxForceToAdd)
+                        forceToAdd = maxForceToAdd;
                     //Add explosive force to vehicle with lower agular velocity along collision trajectory proportionate to current damage of vehicle at a minimum of 1
                     
                     other_RB.AddExplosionForce(forceToAdd, contactPoints[0].point, explosionForceRadius, 1f, ForceMode.Impulse);
