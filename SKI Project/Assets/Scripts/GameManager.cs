@@ -57,10 +57,7 @@ public class GameManager : MonoBehaviour {
 
     void EndGame(PlayerID [] winningPlayerIDList)
     {
-        for (int i = 0; i < winningPlayerIDList.Length; i++)
-        {
-            winningPlayerText.text += winningPlayerIDList[i];
-        }
+        winningPlayerText.text = "  Tie Game!";
         endRoundPanel.SetActive(true);
     }
 
@@ -69,11 +66,11 @@ public class GameManager : MonoBehaviour {
         countDownCount -= Time.deltaTime;
         if (countDownText.enabled == true)
         {
-            countDownText.text = "" + ((int)countDownCount + 1);
+            countDownText.text = " " + ((int)countDownCount + 1);
         }
         else
         {
-            roundCountDownText.text = "" + ((int)countDownCount + 1);
+            roundCountDownText.text = " " + ((int)countDownCount + 1);
         }
 
         if (countDownCount <= 0)
