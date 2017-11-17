@@ -7,7 +7,7 @@ public enum PlayerID { one, two, three, four, AI };
 //reference array of input axiis using enum
 public enum InputAxisIndex { Steering, Gas, Brakes, CameraHorizontal, CameraVertical };
 //reference array of input buttons using enum
-public enum InputButtonIndex { Jump, Action, NextCam, PrevCam };
+public enum InputButtonIndex { Action, Jump, NextCam, PrevCam };
 
 public class InputManagerStatic : MonoBehaviour
 {
@@ -41,12 +41,21 @@ public class InputManagerStatic : MonoBehaviour
                     {
                         inputAxisNames[i] = "XBOX_ONE_";
                     }
+                    for (int i = 0; i < inputButtonNames.Length; i++)
+                    {
+                        inputButtonNames[i] = "XBOX_ONE_";
+                    }
                 }
                 else if (n == "Controller (XBOX 360 For Windows)" || n == "Controller (Rock Candy Gamepad for Xbox 360)")
                 {
                     for (int i = 0; i < inputAxisNames.Length; i++)
                     {
                         inputAxisNames[i] = "XBOX_360_";
+                    }
+                    for (int i = 0; i < inputButtonNames.Length; i++)
+                    {
+                        inputButtonNames[i] = "XBOX_360_";
+                        inputButtonNames[i] += "Action";
                     }
                 }
             }
@@ -57,6 +66,7 @@ public class InputManagerStatic : MonoBehaviour
         inputAxisNames[2] += "Brakes";
         inputAxisNames[3] += "CameraHorizontal";
         inputAxisNames[4] += "CameraVertical";
+
     }
 
     
@@ -74,7 +84,7 @@ public class InputManagerStatic : MonoBehaviour
             for (int i = 0; i < inputButtonNames.Length; i++)
             {
                 //buttons haven't been assigned yet, just placeholder for now
-                //inputButtons[i] = Input.GetButtonDown(inputButtonNames[i] + (int)_playerID);
+                inputButtons[i] = Input.GetButtonDown(inputButtonNames[i] + ((int)_playerID));
             }
         }
         _inputButtons = inputButtons;

@@ -278,7 +278,6 @@ public class CarController : MonoBehaviour {
             Quaternion rotation;
             Vector3 position;
             wheelsAll[i].GetWorldPose(out position, out rotation);
-            rotation = new Quaternion(rotation.x, rotation.y, -90f, rotation.w);
             wheelMeshes[i].transform.position = position;
             wheelMeshes[i].transform.rotation = rotation;
         }

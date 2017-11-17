@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
@@ -17,8 +18,9 @@ public class GameManager : MonoBehaviour {
     bool hasStartedRoundCountdown = false;
     float countDownCount = 3f;
     float gameCountDownTime = 99f;
+    bool hasStartedGame = false;
 
-    public void Awake()
+    public void StartGame()
     {
         if (countDownText != null)
             countDownText.text = "" + countDownCount;
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour {
         }
 
         hasStartedRoundCountdown = false;
+        hasStartedGame = true;
         //StartCoroutine(CountDown());   
     }
 
@@ -53,6 +56,13 @@ public class GameManager : MonoBehaviour {
     {
         winningPlayerText.text += winningPlayerID;
         endRoundPanel.SetActive(true);
+        StartCoroutine(WaitToStartGame());
+    }
+
+    private IEnumerator WaitToStartGame()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene("JapanScaling");
     }
 
     void EndGame(PlayerID [] winningPlayerIDList)
@@ -63,63 +73,66 @@ public class GameManager : MonoBehaviour {
 
     private void Update()
     {
-        countDownCount -= Time.deltaTime;
-        if (countDownText.enabled == true)
+        if (hasStartedGame)
         {
-            countDownText.text = " " + ((int)countDownCount + 1);
-        }
-        else
-        {
-            roundCountDownText.text = " " + ((int)countDownCount + 1);
-        }
-
-        if (countDownCount <= 0)
-        {
-            if(hasStartedRoundCountdown)
+            countDownCount -= Time.deltaTime;
+            if (countDownText.enabled == true)
             {
-                PlayerID winningID = PlayerID.one;
-                List<PlayerID> winningIDList = new List<PlayerID>();
-
-                int highestLives = PlayerManager.vehiclesInScene[0].GetComponent<PlayerHealth>().LivesRemaining;
-                bool hasMatch = false;
-                for (int i = 0; i < PlayerManager.vehiclesInScene.Length; i++)
-                {
-                    PlayerHealth currentPlayerHealth = PlayerManager.vehiclesInScene[i].GetComponent<PlayerHealth>();
-                    CarController currentCarController = PlayerManager.vehiclesInScene[i].GetComponent<CarController>();
-
-                    if (currentPlayerHealth.LivesRemaining == highestLives)
-                    {
-                        hasMatch = true;
-                        winningIDList.Add(currentCarController._PlayerID);
-                    }
-                    if (currentPlayerHealth.LivesRemaining > highestLives)
-                    {
-                        winningID = currentCarController._PlayerID;
-                        winningIDList.Clear();
-                        winningIDList.Add(currentCarController._PlayerID);
-                        hasMatch = false;
-                    }
-                }
-                if (hasMatch)
-                {
-                    EndGame(winningIDList.ToArray());
-                }
-                else
-                {
-                    EndGame(winningID);
-                }
-                hasStartedRoundCountdown = false;
-                countDownCount = gameCountDownTime;
+                countDownText.text = " " + ((int)countDownCount + 1);
             }
-            if (!hasStartedRoundCountdown)
+            else
             {
-                for (int i = 0; i < PlayerManager.vehiclesInScene.Length; i++)
+                roundCountDownText.text = " " + ((int)countDownCount + 1);
+            }
+
+            if (countDownCount <= 0)
+            {
+                if(hasStartedRoundCountdown)
                 {
-                    PlayerManager.vehiclesInScene[i].GetComponent<Rigidbody>().isKinematic = false;
+                    PlayerID winningID = PlayerID.one;
+                    List<PlayerID> winningIDList = new List<PlayerID>();
+
+                    int highestLives = PlayerManager.vehiclesInScene[0].GetComponent<PlayerHealth>().LivesRemaining;
+                    bool hasMatch = false;
+                    for (int i = 0; i < PlayerManager.vehiclesInScene.Length; i++)
+                    {
+                        PlayerHealth currentPlayerHealth = PlayerManager.vehiclesInScene[i].GetComponent<PlayerHealth>();
+                        CarController currentCarController = PlayerManager.vehiclesInScene[i].GetComponent<CarController>();
+
+                        if (currentPlayerHealth.LivesRemaining == highestLives)
+                        {
+                            hasMatch = true;
+                            winningIDList.Add(currentCarController._PlayerID);
+                        }
+                        if (currentPlayerHealth.LivesRemaining > highestLives)
+                        {
+                            winningID = currentCarController._PlayerID;
+                            winningIDList.Clear();
+                            winningIDList.Add(currentCarController._PlayerID);
+                            hasMatch = false;
+                        }
+                    }
+                    if (hasMatch)
+                    {
+                        EndGame(winningIDList.ToArray());
+                    }
+                    else
+                    {
+                        EndGame(winningID);
+                    }
+                    hasStartedRoundCountdown = false;
+                    countDownCount = gameCountDownTime;
                 }
-                hasStartedRoundCountdown = true;
-                countDownCount = gameCountDownTime;
-                countDownText.enabled = false;
+                if (!hasStartedRoundCountdown)
+                {
+                    for (int i = 0; i < PlayerManager.vehiclesInScene.Length; i++)
+                    {
+                        PlayerManager.vehiclesInScene[i].GetComponent<Rigidbody>().isKinematic = false;
+                    }
+                    hasStartedRoundCountdown = true;
+                    countDownCount = gameCountDownTime;
+                    countDownText.enabled = false;
+                }
             }
         }
     }
