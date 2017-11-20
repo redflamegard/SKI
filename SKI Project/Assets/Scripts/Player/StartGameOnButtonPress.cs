@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StartGameOnButtonPress : MonoBehaviour {
     InputManagerStatic inputManagerStatic;
-
+    FadingUI panelImage;
 	// Use this for initialization
 	void Start () {
+        panelImage = GetComponent<FadingUI>();
         inputManagerStatic = GameObject.Find("InputManager").GetComponent<InputManagerStatic>();
 	}
+
+    
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,7 +26,9 @@ public class StartGameOnButtonPress : MonoBehaviour {
                 PlayerManager.vehiclesInScene[i].GetComponent<CarController>().enabled = true;
             }
             GameObject.Find("GameManager").GetComponent<GameManager>().StartGame();
-            gameObject.SetActive(false);
+
+            panelImage.FadeOutUI();
+            
         }
 	}
 }

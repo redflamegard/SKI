@@ -88,6 +88,7 @@
      <Compile Include="Assets\Scripts\PowerUps\CannonTrigger.cs" />
      <Compile Include="Assets\Scripts\PowerUps\PowerUpBox.cs" />
      <Compile Include="Assets\Scripts\PowerUps\PowerUpObject.cs" />
+     <Compile Include="Assets\Scripts\UI\Animations and Transitions\FadingUI.cs" />
      <Compile Include="Assets\Scripts\UI\RestartSceneOnClick.cs" />
      <None Include="Assets\ImportedUnityAssets\ProCore\ProGrids\Shader\pg_GridShader.shader" />
      <None Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\Shader\pb_TransparentOverlay.shader" />
@@ -141,12 +142,6 @@
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>C:/Program Files/Unity3/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
- <Reference Include="Triangle">
- <HintPath>C:/Users/Redflamegard/Documents/GitHub/SKI/SKI Project/Assets/ImportedUnityAssets/ProCore/ProBuilder/Classes/ClassesLib/Triangle.dll</HintPath>
- </Reference>
- <Reference Include="pb_Stl">
- <HintPath>C:/Users/Redflamegard/Documents/GitHub/SKI/SKI Project/Assets/ImportedUnityAssets/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
- </Reference>
  <Reference Include="ProBuilderCore-Unity5">
  <HintPath>C:/Users/Redflamegard/Documents/GitHub/SKI/SKI Project/Assets/ImportedUnityAssets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
  </Reference>
@@ -155,6 +150,12 @@
  </Reference>
  <Reference Include="KDTree">
  <HintPath>C:/Users/Redflamegard/Documents/GitHub/SKI/SKI Project/Assets/ImportedUnityAssets/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
+ </Reference>
+ <Reference Include="pb_Stl">
+ <HintPath>C:/Users/Redflamegard/Documents/GitHub/SKI/SKI Project/Assets/ImportedUnityAssets/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
+ </Reference>
+ <Reference Include="Triangle">
+ <HintPath>C:/Users/Redflamegard/Documents/GitHub/SKI/SKI Project/Assets/ImportedUnityAssets/ProCore/ProBuilder/Classes/ClassesLib/Triangle.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
