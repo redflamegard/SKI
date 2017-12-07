@@ -65,6 +65,7 @@
      <Compile Include="Assets\Persons Work Folders\Alex Stuff\Scripts\Rotate.cs" />
      <Compile Include="Assets\Persons Work Folders\Corey\Corey Scripts\carroot.cs" />
      <Compile Include="Assets\Persons Work Folders\Corey\Corey Scripts\CoreysCarController.cs" />
+     <Compile Include="Assets\Persons Work Folders\Corey\Materials\CameraSceneMovment.cs" />
      <Compile Include="Assets\Persons Work Folders\Corey\Materials\reverseRotation.cs" />
      <Compile Include="Assets\Persons Work Folders\Corey\Materials\rotation.cs" />
      <Compile Include="Assets\Persons Work Folders\Lucia\CameraFollowTarget.cs" />
@@ -145,14 +146,14 @@
  <Reference Include="ProBuilderCore-Unity5">
  <HintPath>C:/Users/corey.king/Desktop/GitHub/SKI/SKI Project/Assets/ImportedUnityAssets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
  </Reference>
- <Reference Include="pb_Stl">
- <HintPath>C:/Users/corey.king/Desktop/GitHub/SKI/SKI Project/Assets/ImportedUnityAssets/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
+ <Reference Include="ProBuilderMeshOps-Unity5">
+ <HintPath>C:/Users/corey.king/Desktop/GitHub/SKI/SKI Project/Assets/ImportedUnityAssets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
  </Reference>
  <Reference Include="KDTree">
  <HintPath>C:/Users/corey.king/Desktop/GitHub/SKI/SKI Project/Assets/ImportedUnityAssets/ProCore/ProBuilder/Classes/ClassesLib/KDTree.dll</HintPath>
  </Reference>
- <Reference Include="ProBuilderMeshOps-Unity5">
- <HintPath>C:/Users/corey.king/Desktop/GitHub/SKI/SKI Project/Assets/ImportedUnityAssets/ProCore/ProBuilder/Classes/ProBuilderMeshOps-Unity5.dll</HintPath>
+ <Reference Include="pb_Stl">
+ <HintPath>C:/Users/corey.king/Desktop/GitHub/SKI/SKI Project/Assets/ImportedUnityAssets/ProCore/ProBuilder/Classes/ClassesLib/pb_Stl.dll</HintPath>
  </Reference>
  <Reference Include="Triangle">
  <HintPath>C:/Users/corey.king/Desktop/GitHub/SKI/SKI Project/Assets/ImportedUnityAssets/ProCore/ProBuilder/Classes/ClassesLib/Triangle.dll</HintPath>
