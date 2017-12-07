@@ -77,93 +77,95 @@
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
     <Reference Include="ProBuilderCore-Unity5">
-      <HintPath>Assets\ProCore\ProBuilder\Classes\ProBuilderCore-Unity5.dll</HintPath>
+      <HintPath>Assets\ImportedUnityAssets\ProCore\ProBuilder\Classes\ProBuilderCore-Unity5.dll</HintPath>
     </Reference>
     <Reference Include="ProBuilderMeshOps-Unity5">
-      <HintPath>Assets\ProCore\ProBuilder\Classes\ProBuilderMeshOps-Unity5.dll</HintPath>
+      <HintPath>Assets\ImportedUnityAssets\ProCore\ProBuilder\Classes\ProBuilderMeshOps-Unity5.dll</HintPath>
     </Reference>
     <Reference Include="KDTree">
-      <HintPath>Assets\ProCore\ProBuilder\Classes\ClassesLib\KDTree.dll</HintPath>
+      <HintPath>Assets\ImportedUnityAssets\ProCore\ProBuilder\Classes\ClassesLib\KDTree.dll</HintPath>
     </Reference>
     <Reference Include="pb_Stl">
-      <HintPath>Assets\ProCore\ProBuilder\Classes\ClassesLib\pb_Stl.dll</HintPath>
+      <HintPath>Assets\ImportedUnityAssets\ProCore\ProBuilder\Classes\ClassesLib\pb_Stl.dll</HintPath>
     </Reference>
     <Reference Include="Triangle">
-      <HintPath>Assets\ProCore\ProBuilder\Classes\ClassesLib\Triangle.dll</HintPath>
+      <HintPath>Assets\ImportedUnityAssets\ProCore\ProBuilder\Classes\ClassesLib\Triangle.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Alex Stuff\Scripts\HeadTriggers.cs" />
-    <Compile Include="Assets\Alex Stuff\Scripts\Rotate.cs" />
-    <Compile Include="Assets\Corey\Corey Scripts\carroot.cs" />
-    <Compile Include="Assets\Corey\Corey Scripts\CoreysCarController.cs" />
-    <Compile Include="Assets\Corey\Materials\reverseRotation.cs" />
-    <Compile Include="Assets\Corey\Materials\rotation.cs" />
-    <Compile Include="Assets\Lucia\CameraFollowTarget.cs" />
-    <Compile Include="Assets\Lucia\Standard Assets\Cameras\Scripts\AbstractTargetFollower.cs" />
-    <Compile Include="Assets\Lucia\Standard Assets\Cameras\Scripts\CameraRectResize.cs" />
-    <Compile Include="Assets\Lucia\Standard Assets\Cameras\Scripts\PivotBasedCameraRig.cs" />
-    <Compile Include="Assets\Lucia\Standard Assets\Cameras\Scripts\ProtectCameraFromWallClip.cs" />
-    <Compile Include="Assets\Lucia\Standard Assets\Cameras\Scripts\TargetFieldOfView.cs" />
-    <Compile Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\Scripts\CameraControls.cs" />
-    <Compile Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\Scripts\IcoBumpin.cs" />
-    <Compile Include="Assets\ProCore\ProBuilder\API Examples\Misc\HueCube.cs" />
-    <Compile Include="Assets\ProCore\ProBuilder\API Examples\Runtime Editing\RuntimeEdit.cs" />
-    <Compile Include="Assets\ProCore\ProGrids\Classes\pg_Constant.cs" />
-    <Compile Include="Assets\ProCore\ProGrids\Classes\pg_Enum.cs" />
-    <Compile Include="Assets\ProCore\ProGrids\Classes\pg_SceneMeshRender.cs" />
-    <Compile Include="Assets\ProCore\ProGrids\Classes\pg_Util.cs" />
-    <Compile Include="Assets\Scripts\CannonBall.cs" />
-    <Compile Include="Assets\Scripts\CannonController.cs" />
-    <Compile Include="Assets\Scripts\CannonTrigger.cs" />
-    <Compile Include="Assets\Scripts\CarController.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\InputManagerStatic.cs" />
-    <Compile Include="Assets\Scripts\PlayerCameraScript.cs" />
-    <Compile Include="Assets\Scripts\PlayerHealth.cs" />
-    <Compile Include="Assets\Scripts\PlayerManager.cs" />
-    <Compile Include="Assets\Scripts\PlayerPowerUpComponent.cs" />
-    <Compile Include="Assets\Scripts\PowerUpBox.cs" />
-    <Compile Include="Assets\Scripts\PowerUpObject.cs" />
-    <Compile Include="Assets\Scripts\RestartSceneOnClick.cs" />
-    <Compile Include="Assets\Scripts\SpinningUIIcon.cs" />
-    <Compile Include="Assets\Scripts\StartGameOnButtonPress.cs" />
-    <Compile Include="Assets\Scripts\VehicleCollisionHandler.cs" />
-    <Compile Include="Assets\Shaders\Billboard\billboard.cs" />
-    <Compile Include="Assets\Shaders\imageEffects\cPrecision.cs" />
+    <Compile Include="Assets\ART\Shad_Text_Mats\Shaders\Billboard\billboard.cs" />
+    <Compile Include="Assets\ART\Shad_Text_Mats\Shaders\imageEffects\cPrecision.cs" />
+    <Compile Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\API Examples\Icosphere FFT\Scripts\CameraControls.cs" />
+    <Compile Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\API Examples\Icosphere FFT\Scripts\IcoBumpin.cs" />
+    <Compile Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\API Examples\Misc\HueCube.cs" />
+    <Compile Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\API Examples\Runtime Editing\RuntimeEdit.cs" />
+    <Compile Include="Assets\ImportedUnityAssets\ProCore\ProGrids\Classes\pg_Constant.cs" />
+    <Compile Include="Assets\ImportedUnityAssets\ProCore\ProGrids\Classes\pg_Enum.cs" />
+    <Compile Include="Assets\ImportedUnityAssets\ProCore\ProGrids\Classes\pg_SceneMeshRender.cs" />
+    <Compile Include="Assets\ImportedUnityAssets\ProCore\ProGrids\Classes\pg_Util.cs" />
+    <Compile Include="Assets\Persons Work Folders\Alex Stuff\Scripts\HeadTriggers.cs" />
+    <Compile Include="Assets\Persons Work Folders\Alex Stuff\Scripts\Rotate.cs" />
+    <Compile Include="Assets\Persons Work Folders\Corey\Corey Scripts\carroot.cs" />
+    <Compile Include="Assets\Persons Work Folders\Corey\Corey Scripts\CoreysCarController.cs" />
+    <Compile Include="Assets\Persons Work Folders\Corey\Materials\CameraSceneMovment.cs" />
+    <Compile Include="Assets\Persons Work Folders\Corey\Materials\reverseRotation.cs" />
+    <Compile Include="Assets\Persons Work Folders\Corey\Materials\rotation.cs" />
+    <Compile Include="Assets\Persons Work Folders\Lucia\CameraFollowTarget.cs" />
+    <Compile Include="Assets\Persons Work Folders\Lucia\Standard Assets\Cameras\Scripts\AbstractTargetFollower.cs" />
+    <Compile Include="Assets\Persons Work Folders\Lucia\Standard Assets\Cameras\Scripts\CameraRectResize.cs" />
+    <Compile Include="Assets\Persons Work Folders\Lucia\Standard Assets\Cameras\Scripts\PivotBasedCameraRig.cs" />
+    <Compile Include="Assets\Persons Work Folders\Lucia\Standard Assets\Cameras\Scripts\ProtectCameraFromWallClip.cs" />
+    <Compile Include="Assets\Persons Work Folders\Lucia\Standard Assets\Cameras\Scripts\TargetFieldOfView.cs" />
+    <Compile Include="Assets\Scripts\Car\CarController.cs" />
+    <Compile Include="Assets\Scripts\Car\VehicleCollisionHandler.cs" />
+    <Compile Include="Assets\Scripts\Game Management\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Game Management\InputManagerStatic.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerCameraScript.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerManager.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerPowerUpComponent.cs" />
+    <Compile Include="Assets\Scripts\Player\SpinningUIIcon.cs" />
+    <Compile Include="Assets\Scripts\Player\StartGameOnButtonPress.cs" />
+    <Compile Include="Assets\Scripts\PowerUps\CannonBall.cs" />
+    <Compile Include="Assets\Scripts\PowerUps\CannonController.cs" />
+    <Compile Include="Assets\Scripts\PowerUps\CannonTrigger.cs" />
+    <Compile Include="Assets\Scripts\PowerUps\PowerUpBox.cs" />
+    <Compile Include="Assets\Scripts\PowerUps\PowerUpObject.cs" />
+    <Compile Include="Assets\Scripts\UI\Animations and Transitions\FadingUI.cs" />
+    <Compile Include="Assets\Scripts\UI\RestartSceneOnClick.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\README.txt" />
-    <None Include="Assets\ProCore\ProBuilder\About\Credits.txt" />
-    <None Include="Assets\ProCore\ProBuilder\About\changelog.txt" />
-    <None Include="Assets\ProCore\ProBuilder\About\pc_AboutEntry_ProBuilder.txt" />
-    <None Include="Assets\ProCore\ProBuilder\Shader\DiffuseTextureBlend.shader" />
-    <None Include="Assets\ProCore\ProBuilder\Shader\DiffuseVertexColor.shader" />
-    <None Include="Assets\ProCore\ProBuilder\Shader\UnlitSolidColor.shader" />
-    <None Include="Assets\ProCore\ProBuilder\Shader\pb_FaceHighlight.shader" />
-    <None Include="Assets\ProCore\ProBuilder\Shader\pb_HideVertices.shader" />
-    <None Include="Assets\ProCore\ProBuilder\Shader\pb_StandardVertexColor.shader" />
-    <None Include="Assets\ProCore\ProBuilder\Shader\pb_TransparentOverlay.shader" />
-    <None Include="Assets\ProCore\ProBuilder\Shader\pb_UnlitVertexColor.shader" />
-    <None Include="Assets\ProCore\ProBuilder\Shader\pb_VertexShader.shader" />
-    <None Include="Assets\ProCore\ProBuilder\readme.txt" />
-    <None Include="Assets\ProCore\ProGrids\About\changelog.txt" />
-    <None Include="Assets\ProCore\ProGrids\About\pc_AboutEntry_ProGrids.txt" />
-    <None Include="Assets\ProCore\ProGrids\Shader\pg_GridShader.shader" />
-    <None Include="Assets\ProCoreBundle\_README.txt" />
-    <None Include="Assets\Shaders\Reflective\psx-unlit-add.shader" />
-    <None Include="Assets\Shaders\Reflective\psx-unlit-mult.shader" />
-    <None Include="Assets\Shaders\Reflective\psx-unlit_noambient-add.shader" />
-    <None Include="Assets\Shaders\Reflective\psx-unlit_noambient-mult.shader" />
-    <None Include="Assets\Shaders\Reflective\psx-vertexlit-add.shader" />
-    <None Include="Assets\Shaders\Reflective\psx-vertexlit-mult.shader" />
-    <None Include="Assets\Shaders\Resources\cPrecision.shader" />
-    <None Include="Assets\Shaders\Trasparent\psx-trasparent-unlit-noambient.shader" />
-    <None Include="Assets\Shaders\Trasparent\psx-trasparent-unlit.shader" />
-    <None Include="Assets\Shaders\Trasparent\psx-trasparent-vertexlit.shader" />
-    <None Include="Assets\Shaders\psx-unlit.shader" />
-    <None Include="Assets\Shaders\psx-unlit_noambient.shader" />
-    <None Include="Assets\Shaders\psx-vertexlit.shader" />
+    <None Include="Assets\ART\Shad_Text_Mats\Shaders\Reflective\psx-unlit-add.shader" />
+    <None Include="Assets\ART\Shad_Text_Mats\Shaders\Reflective\psx-unlit-mult.shader" />
+    <None Include="Assets\ART\Shad_Text_Mats\Shaders\Reflective\psx-unlit_noambient-add.shader" />
+    <None Include="Assets\ART\Shad_Text_Mats\Shaders\Reflective\psx-unlit_noambient-mult.shader" />
+    <None Include="Assets\ART\Shad_Text_Mats\Shaders\Reflective\psx-vertexlit-add.shader" />
+    <None Include="Assets\ART\Shad_Text_Mats\Shaders\Reflective\psx-vertexlit-mult.shader" />
+    <None Include="Assets\ART\Shad_Text_Mats\Shaders\Resources\cPrecision.shader" />
+    <None Include="Assets\ART\Shad_Text_Mats\Shaders\Trasparent\psx-trasparent-unlit-noambient.shader" />
+    <None Include="Assets\ART\Shad_Text_Mats\Shaders\Trasparent\psx-trasparent-unlit.shader" />
+    <None Include="Assets\ART\Shad_Text_Mats\Shaders\Trasparent\psx-trasparent-vertexlit.shader" />
+    <None Include="Assets\ART\Shad_Text_Mats\Shaders\psx-unlit.shader" />
+    <None Include="Assets\ART\Shad_Text_Mats\Shaders\psx-unlit_noambient.shader" />
+    <None Include="Assets\ART\Shad_Text_Mats\Shaders\psx-vertexlit.shader" />
+    <None Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\API Examples\Icosphere FFT\README.txt" />
+    <None Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\About\Credits.txt" />
+    <None Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\About\changelog.txt" />
+    <None Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\About\pc_AboutEntry_ProBuilder.txt" />
+    <None Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\Shader\DiffuseTextureBlend.shader" />
+    <None Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\Shader\DiffuseVertexColor.shader" />
+    <None Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\Shader\UnlitSolidColor.shader" />
+    <None Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\Shader\pb_FaceHighlight.shader" />
+    <None Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\Shader\pb_HideVertices.shader" />
+    <None Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\Shader\pb_StandardVertexColor.shader" />
+    <None Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\Shader\pb_TransparentOverlay.shader" />
+    <None Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\Shader\pb_UnlitVertexColor.shader" />
+    <None Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\Shader\pb_VertexShader.shader" />
+    <None Include="Assets\ImportedUnityAssets\ProCore\ProBuilder\readme.txt" />
+    <None Include="Assets\ImportedUnityAssets\ProCore\ProGrids\About\changelog.txt" />
+    <None Include="Assets\ImportedUnityAssets\ProCore\ProGrids\About\pc_AboutEntry_ProGrids.txt" />
+    <None Include="Assets\ImportedUnityAssets\ProCore\ProGrids\Shader\pg_GridShader.shader" />
+    <None Include="Assets\ImportedUnityAssets\ProCoreBundle\_README.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

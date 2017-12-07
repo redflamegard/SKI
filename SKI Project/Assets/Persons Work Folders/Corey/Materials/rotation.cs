@@ -11,7 +11,7 @@ public class rotation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        this.gameObject.transform.Rotate(2,5,5);
+        this.gameObject.transform.Rotate(0,.25f,0);
 		
 	}
 }
