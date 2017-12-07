@@ -16,12 +16,7 @@ public class CameraSceneMovment : MonoBehaviour {
     void Start() {
         Debug.Log(currentNum);
         currentNum = 0;
-        Speed = Random.Range(0, 100);
-        SpeedSlider.value = Speed;
-        Accel = Random.Range(0, 100);
-        AccelSlider.value = Accel;
-        Handling = Random.Range(0, 100);
-        HandlerSlider.value = Handling;
+        UpdateStats();
 
 
     }
@@ -32,7 +27,7 @@ public class CameraSceneMovment : MonoBehaviour {
 
     }
 
-    public void NextPosition()
+    void UpdateStats ()
     {
         Speed = Random.Range(20, 100);
         SpeedSlider.value = Speed;
@@ -40,6 +35,12 @@ public class CameraSceneMovment : MonoBehaviour {
         AccelSlider.value = Accel;
         Handling = Random.Range(20, 100);
         HandlerSlider.value = Handling;
+
+    }
+
+    public void NextPosition()
+    {
+        UpdateStats();
         if (currentNum != CameraPositions.Count-1)
         {
             Debug.Log(currentNum);
@@ -52,12 +53,7 @@ public class CameraSceneMovment : MonoBehaviour {
 
     public void LastPosition ()
     {
-        Speed = Random.Range(20, 100);
-        SpeedSlider.value = Speed;
-        Accel = Random.Range(30, 100);
-        AccelSlider.value = Accel;
-        Handling = Random.Range(20, 100);
-        HandlerSlider.value = Handling;
+        UpdateStats();
         if (currentNum != 0)
         {
             CameraObject.transform.position = CameraPositions[currentNum - 1].position;
