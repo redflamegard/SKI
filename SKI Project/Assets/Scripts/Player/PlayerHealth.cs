@@ -65,8 +65,11 @@ public class PlayerHealth : MonoBehaviour {
 
     void ResetUIValues()
     {
-        healthSlider.maxValue = maxHealth;
-        healthSlider.value = maxHealth;
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = maxHealth;
+            healthSlider.value = maxHealth;
+        }
     }
     
 
@@ -75,7 +78,8 @@ public class PlayerHealth : MonoBehaviour {
             currentDamage += damage;
         if (damage == -1)   //Heal pickUp
             currentDamage = 0;
-        healthSlider.value = maxHealth - currentDamage;
+        if(healthSlider != null)
+            healthSlider.value = maxHealth - currentDamage;
         Debug.Log("Player: " + GetComponent<CarController>()._PlayerID + "Current Damage: " + currentDamage);
         if (currentDamage >= maxHealth)
         {

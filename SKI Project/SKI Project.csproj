@@ -77,7 +77,6 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
     </Reference>
     <Reference Include="ProBuilderCore-Unity5">
-<<<<<<< HEAD
       <HintPath>Assets/ImportedUnityAssets/ProCore/ProBuilder/Classes/ProBuilderCore-Unity5.dll</HintPath>
     </Reference>
     <Reference Include="ProBuilderMeshOps-Unity5">
@@ -91,21 +90,6 @@
     </Reference>
     <Reference Include="Triangle">
       <HintPath>Assets/ImportedUnityAssets/ProCore/ProBuilder/Classes/ClassesLib/Triangle.dll</HintPath>
-=======
-      <HintPath>Assets\ImportedUnityAssets\ProCore\ProBuilder\Classes\ProBuilderCore-Unity5.dll</HintPath>
-    </Reference>
-    <Reference Include="ProBuilderMeshOps-Unity5">
-      <HintPath>Assets\ImportedUnityAssets\ProCore\ProBuilder\Classes\ProBuilderMeshOps-Unity5.dll</HintPath>
-    </Reference>
-    <Reference Include="KDTree">
-      <HintPath>Assets\ImportedUnityAssets\ProCore\ProBuilder\Classes\ClassesLib\KDTree.dll</HintPath>
-    </Reference>
-    <Reference Include="pb_Stl">
-      <HintPath>Assets\ImportedUnityAssets\ProCore\ProBuilder\Classes\ClassesLib\pb_Stl.dll</HintPath>
-    </Reference>
-    <Reference Include="Triangle">
-      <HintPath>Assets\ImportedUnityAssets\ProCore\ProBuilder\Classes\ClassesLib\Triangle.dll</HintPath>
->>>>>>> origin/master
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -119,18 +103,12 @@
     <Compile Include="Assets\ImportedUnityAssets\ProCore\ProGrids\Classes\pg_Enum.cs" />
     <Compile Include="Assets\ImportedUnityAssets\ProCore\ProGrids\Classes\pg_SceneMeshRender.cs" />
     <Compile Include="Assets\ImportedUnityAssets\ProCore\ProGrids\Classes\pg_Util.cs" />
-<<<<<<< HEAD
     <Compile Include="Assets\OBJExport\OBJExporter.cs" />
-=======
->>>>>>> origin/master
     <Compile Include="Assets\Persons Work Folders\Alex Stuff\Scripts\HeadTriggers.cs" />
     <Compile Include="Assets\Persons Work Folders\Alex Stuff\Scripts\Rotate.cs" />
     <Compile Include="Assets\Persons Work Folders\Corey\Corey Scripts\carroot.cs" />
     <Compile Include="Assets\Persons Work Folders\Corey\Corey Scripts\CoreysCarController.cs" />
-<<<<<<< HEAD
-=======
     <Compile Include="Assets\Persons Work Folders\Corey\Materials\CameraSceneMovment.cs" />
->>>>>>> origin/master
     <Compile Include="Assets\Persons Work Folders\Corey\Materials\reverseRotation.cs" />
     <Compile Include="Assets\Persons Work Folders\Corey\Materials\rotation.cs" />
     <Compile Include="Assets\Persons Work Folders\Lucia\CameraFollowTarget.cs" />
